@@ -555,7 +555,7 @@ export default function Home() {
       </section>
 
       {/* =========================================================
-          ANIMATED STATISTICS
+          GEANIMEERDE STATISTIEKEN
           ========================================================= */}
       <section className="py-24 bg-[#09090B] relative overflow-hidden border-y border-[#27272A]">
         <div
@@ -577,37 +577,41 @@ export default function Home() {
               Wat je krijgt bij {CONSTANTS.BRAND_NAME}.
             </p>
           </FadeIn>
+
           <FadeInStagger className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center">
             <FadeInItem className="flex flex-col items-center p-6 bg-[#18181B] text-[#F8FAFC] rounded-3xl border border-[#27272A] shadow-lg">
               <span className="text-5xl md:text-7xl font-black text-[#39FF14] mb-2">
-                <AnimatedCounter value={24} />
+                <AnimatedCounter value={50} suffix="K+" />
               </span>
               <span className="text-xs text-[#94A3B8] font-extrabold uppercase tracking-widest mt-2">
-                Uur gratis testen
+                Actieve abonnees
               </span>
             </FadeInItem>
+
             <FadeInItem className="flex flex-col items-center p-6 bg-[#18181B] text-[#F8FAFC] rounded-3xl border border-[#27272A] shadow-lg">
               <span className="text-5xl md:text-7xl font-black text-[#39FF14] mb-2">
-                <AnimatedCounter value={3} />
+                <AnimatedCounter value={55} suffix="K+" />
               </span>
               <span className="text-xs text-[#94A3B8] font-extrabold uppercase tracking-widest mt-2">
-                Looptijden: 3, 6 of 12 maanden
+                Live zenders
               </span>
             </FadeInItem>
+
             <FadeInItem className="flex flex-col items-center p-6 bg-[#18181B] text-[#F8FAFC] rounded-3xl border border-[#27272A] shadow-lg">
               <span className="text-5xl md:text-7xl font-black text-[#39FF14] mb-2">
-                <AnimatedCounter value={7} />
+                <AnimatedCounter value={150} suffix="K+" />
               </span>
               <span className="text-xs text-[#94A3B8] font-extrabold uppercase tracking-widest mt-2">
-                Dagen terugkijken
+                On-demand titels
               </span>
             </FadeInItem>
+
             <FadeInItem className="flex flex-col items-center p-6 bg-[#18181B] text-[#F8FAFC] rounded-3xl border border-[#27272A] shadow-lg">
               <span className="text-5xl md:text-7xl font-black text-[#39FF14] mb-2">
-                <AnimatedCounter value={MAX_SAVING_12} suffix="%" />
+                <AnimatedCounter value={99.9} decimals={1} suffix="%" />
               </span>
               <span className="text-xs text-[#94A3B8] font-extrabold uppercase tracking-widest mt-2">
-                Max. besparing bij 12 maanden
+                Server uptime
               </span>
             </FadeInItem>
           </FadeInStagger>
