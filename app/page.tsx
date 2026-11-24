@@ -581,7 +581,7 @@ export default function Home() {
           <FadeInStagger className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center">
             <FadeInItem className="flex flex-col items-center p-6 bg-[#18181B] text-[#F8FAFC] rounded-3xl border border-[#27272A] shadow-lg">
               <span className="text-5xl md:text-7xl font-black text-[#39FF14] mb-2">
-                <AnimatedCounter value={50} suffix="K+" />
+                <AnimatedCounter value={25} suffix="K+" />
               </span>
               <span className="text-xs text-[#94A3B8] font-extrabold uppercase tracking-widest mt-2">
                 Actieve abonnees
