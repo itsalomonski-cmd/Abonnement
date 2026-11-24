@@ -1,0 +1,33 @@
+allowBuilds:
+  '@tailwindcss/oxide': true
+  protobufjs: true
+  re2: true
+  sharp: true
+  unrs-resolver: true
+
+# Security overrides for vulnerable transitive dependencies.
+# Each key targets only the vulnerable version range and moves it to the
+# earliest patched release in the SAME major version. Unless noted, the target
+# is already within every dependent's declared semver range (the lockfile was
+# simply stale). Remove an entry once its parent package ships the fix itself.
+overrides:
+  # --- production build chain (next / postcss / tailwind) ---
+  # next@15.5.29 pins postcss 8.4.31 exactly; 8.5.x is the same major (validated by build).
+  'postcss@<8.5.23': ^8.5.23
+  # within next@15.5.29's declared optional range (^0.34.3 || ^0.35.5); requires Node >= 20.9.
+  'sharp@<0.35.5': ^0.35.5
+  'nanoid@>=3 <3.3.18': ^3.3.18
+  'source-map-js@<1.2.2': ^1.2.2
+  'browserslist@<4.28.7': ^4.28.7
+  'baseline-browser-mapping@<2.11.0': ^2.11.0
+  'tar@>=7 <7.5.21': ^7.5.21
+  # @tailwindcss/typography pins 6.0.10 exactly (plugin is not registered); same major.
+  'postcss-selector-parser@>=6 <6.1.5': ^6.1.5
+  # --- dev tooling (eslint) ---
+  'brace-expansion@>=1 <1.1.21': ^1.1.21
+  'brace-expansion@>=2 <2.1.7': ^2.1.7
+  'brace-expansion@>=5 <5.0.12': ^5.0.12
+  'js-yaml@>=4 <4.3.2': ^4.3.2
+  'zod@>=4 <4.6.6': ^4.6.6
+  # (The firebase-tools CLI overrides were removed together with firebase-tools:
+  # none of their target packages is installed any more.)

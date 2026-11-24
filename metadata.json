@@ -1,0 +1,6 @@
+{
+  "name": "IPTVAbonnement",
+  "description": "Nederlandstalige website van IPTVAbonnement (iptvabonnement.plus)",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

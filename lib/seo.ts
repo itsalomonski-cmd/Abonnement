@@ -1,0 +1,219 @@
+// lib/seo.ts
+import { Metadata } from 'next';
+
+// ---------------------------------------------------------------------------
+// CORE BRAND & DOMAIN CONFIGURATION (NEDERLAND)
+// ---------------------------------------------------------------------------
+const DOMAIN = 'iptvabonnement.plus';
+const BRAND_NAME = 'IPTVAbonnement';
+const SITE_URL = `https://${DOMAIN}`;
+
+// Focus keywords. Each page targets its own keyword (see the keyword map in
+// the migration report); this is only the site-wide primary term.
+const FOCUS_KEYWORD = 'IPTV abonnement';
+
+const LOCALE = 'nl_NL';
+const LANGUAGE = 'nl-NL';
+const ADDRESS_COUNTRY = 'NL';
+const CURRENCY = 'EUR';
+
+// Stable Organization @id used to link brand entities across JSON-LD blocks
+const ORGANIZATION_ID = `${SITE_URL}/#organization`;
+
+// Social-share and brand images that exist in /public, with their real pixel
+// dimensions.
+const OG_IMAGE = {
+  url: `/img/og-image.jpg`,
+  width: 1200,
+  height: 630,
+  type: 'image/jpeg',
+} as const;
+
+const LOGO_IMAGE = {
+  url: `/img/iptvabonnement-logo.png`,
+  width: 600,
+  height: 120,
+} as const;
+
+// ---------------------------------------------------------------------------
+// EXPORTED CONSTANTS
+// ---------------------------------------------------------------------------
+export const CONSTANTS = {
+  DOMAIN,
+  BRAND_NAME,
+  SITE_URL,
+  FOCUS_KEYWORD,
+
+  LOCALE,
+  LANGUAGE,
+  ADDRESS_COUNTRY,
+  CURRENCY,
+  ORGANIZATION_ID,
+  OG_IMAGE,
+  LOGO_IMAGE,
+
+  // Business contact details.
+  // ⚠️ OWNER INPUT REQUIRED: no IPTVAbonnement mailbox, phone number or
+  // WhatsApp number has been confirmed yet, so all three stay empty and the UI
+  // hides them.
+  //
+  // whatsappUrl must be a DIRECT WhatsApp click-to-chat link of the form
+  // https://wa.me/<international number, digits only>, e.g. https://wa.me/31612345678.
+  // Any other value (including third-party redirect domains) is rejected by
+  // WHATSAPP_AVAILABLE below. The previous value, https://support-tv.online,
+  // was an unverified third-party redirect inherited from the source project
+  // and has been removed (Phase 2).
+  CONTACT: {
+    email: '', // ⚠️ Add a verified IPTVAbonnement email address
+    phone: '', // ⚠️ Add a verified phone number
+    whatsappUrl: '', // ⚠️ Add the verified https://wa.me/<number> link
+    supportHours: 'Klantenservice via WhatsApp',
+  },
+
+  // Social media profiles (Footer only renders non-empty URLs).
+  SOCIALS: {
+    twitter: '',
+    instagram: '',
+    facebook: '',
+  } as { twitter: string; instagram: string; facebook: string },
+
+  // Payment methods as listed by the existing site. iDEAL / Bancontact are
+  // NOT listed because their availability has not been confirmed.
+  PAYMENT_METHODS: [
+    { name: 'Mastercard', icon: '/img/payment/1.png' },
+    { name: 'Visa', icon: '/img/payment/2.png' },
+    { name: 'Bitcoin & crypto', icon: '/img/payment/3.png' },
+    { name: 'PayPal', icon: '/img/payment/4.png' },
+  ],
+};
+
+// ---------------------------------------------------------------------------
+// WHATSAPP CTA DESTINATION
+// Every WhatsApp button on the site goes through whatsappUrl(). Only a direct
+// https://wa.me/<number> link is accepted. Until a verified number is set in
+// CONSTANTS.CONTACT.whatsappUrl, all WhatsApp buttons lead to the
+// customer-service page, which states that WhatsApp contact is not yet
+// available, instead of to an unverified destination.
+//
+// Only site-generated texts (e.g. "Ik wil graag het abonnement van 3 maanden")
+// may be passed as `message`. Text typed by visitors (names, e-mail addresses,
+// questions) must never be put in a URL: see lib/whatsapp-handoff.ts.
+// ---------------------------------------------------------------------------
+export const WHATSAPP_AVAILABLE = /^https:\/\/wa\.me\/\d{8,15}$/.test(CONSTANTS.CONTACT.whatsappUrl);
+
+/** Page that explains the contact options while WhatsApp is not configured. */
+export const CONTACT_FALLBACK_PATH = '/klantenservice';
+
+export const whatsappUrl = (message?: string): string => {
+  if (!WHATSAPP_AVAILABLE) return CONTACT_FALLBACK_PATH;
+  const base = CONSTANTS.CONTACT.whatsappUrl;
+  return message ? `${base}?text=${encodeURIComponent(message)}` : base;
+};
+
+/**
+ * `target` for WhatsApp links: a new tab for the real WhatsApp chat, but the
+ * same tab while links fall back to the internal customer-service page.
+ */
+export const WHATSAPP_LINK_TARGET: '_blank' | undefined = WHATSAPP_AVAILABLE ? '_blank' : undefined;
+
+/** The free 24-hour trial is requested over WhatsApp everywhere on the site. */
+export const FREE_TRIAL_WHATSAPP_URL = whatsappUrl(
+  'Hallo! Ik wil graag de gratis proefperiode van 24 uur proberen.'
+);
+
+// ---------------------------------------------------------------------------
+// LEGAL PAGES — INDEXING GATE
+// The legal pages are drafts: company name, address, KvK/VAT number, contact
+// e-mail, governing law and the refund/withdrawal terms are still missing and
+// the texts have not been legally reviewed. Until that is done they stay
+// reachable for visitors (footer links, with a visible draft notice) but are
+// noindex and left out of the sitemap. Set to true only after the owner has
+// supplied the missing details and the texts have been reviewed.
+// ---------------------------------------------------------------------------
+export const LEGAL_PAGES_FINAL = false;
+
+export const LEGAL_PATHS = ['/algemene-voorwaarden', '/privacybeleid', '/restitutiebeleid', '/dmca'] as const;
+
+/** Absolute URL on the canonical domain for a site path. */
+export const absoluteUrl = (path: string = '/') =>
+  path === '/' || path === '' ? SITE_URL : `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`;
+
+// ---------------------------------------------------------------------------
+// SEO METADATA GENERATOR
+// ---------------------------------------------------------------------------
+export const generateSEOMetadata = (
+  pageName: string,
+  description?: string,
+  path: string = '/',
+  options: { noindex?: boolean } = {}
+): Metadata => {
+  const defaultDescription =
+    description ||
+    `${BRAND_NAME}: een IPTV abonnement voor Nederland met live tv, films en series op je Smart TV, Firestick, telefoon of tablet. Hulp bij installatie via WhatsApp.`;
+
+  // "{Page} | IPTVAbonnement"; a page name that already contains the brand is
+  // used as-is. Returned as an absolute title so the root layout's template is
+  // not appended a second time.
+  const formattedTitle = pageName.includes(BRAND_NAME) ? pageName : `${pageName} | ${BRAND_NAME}`;
+  const canonical = absoluteUrl(path);
+  const index = !options.noindex;
+
+  return {
+    title: { absolute: formattedTitle },
+    description: defaultDescription,
+    metadataBase: new URL(SITE_URL),
+    alternates: {
+      canonical,
+      languages: {
+        'nl-NL': canonical,
+        'x-default': canonical,
+      },
+    },
+    openGraph: {
+      title: formattedTitle,
+      description: defaultDescription,
+      url: canonical,
+      siteName: BRAND_NAME,
+      locale: LOCALE,
+      type: 'website',
+      images: [{ ...OG_IMAGE, alt: `${BRAND_NAME} logo met de tekst “Jouw IPTV abonnement in Nederland”` }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: formattedTitle,
+      description: defaultDescription,
+      images: [OG_IMAGE.url],
+    },
+    robots: {
+      index,
+      follow: true,
+      googleBot: {
+        index,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+    authors: [{ name: BRAND_NAME, url: SITE_URL }],
+    creator: BRAND_NAME,
+    publisher: BRAND_NAME,
+    applicationName: BRAND_NAME,
+    formatDetection: {
+      email: false,
+      address: false,
+      telephone: false,
+    },
+  };
+};
+
+/** BreadcrumbList JSON-LD for a page. `trail` excludes the homepage. */
+export const breadcrumbSchema = (trail: { name: string; path: string }[]) => ({
+  '@type': 'BreadcrumbList',
+  itemListElement: [{ name: 'Home', path: '/' }, ...trail].map((item, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: item.name,
+    item: absoluteUrl(item.path),
+  })),
+});
