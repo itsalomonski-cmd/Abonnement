@@ -300,7 +300,7 @@ export const blogPosts: BlogPost[] = [
       'iptv aanbieder',
       'iptv apparaten',
     ],
-    image: '/img/blog/article-11/cover.webp',
+    image: '/img/blog/article-04/cover.webp',
     imageAlt: 'Tv en tablet met een overzicht van live tv, sport en films in de woonkamer',
     category: 'tips',
     device: 'Alle apparaten',
@@ -308,7 +308,7 @@ export const blogPosts: BlogPost[] = [
     content: `
 ${ARTICLE_STYLE_BLOCK}
 
-<img src="/img/blog/article-11/cover.webp" alt="Man kijkt ontspannen naar internet-tv in een comfortabele, eigentijdse woonkamer." class="article-image" />
+<img src="/img/blog/article-04/cover.webp" alt="Man kijkt ontspannen naar internet-tv in een comfortabele, eigentijdse woonkamer." class="article-image" />
 
 
 
@@ -394,7 +394,7 @@ ${ARTICLE_STYLE_BLOCK}
   </div>
 </div>
 
-<img src="/img/blog/article-11/image-01.webp" alt="Kijker geniet van televisie via internet in een moderne woonkamer" class="article-image" />
+<img src="/img/blog/article-04/image-01.webp" alt="Kijker geniet van televisie via internet in een moderne woonkamer" class="article-image" />
 
 <h2>Hoeveel internetsnelheid heb je nodig voor HD en 4K?</h2>
 
@@ -486,7 +486,7 @@ ${ARTICLE_STYLE_BLOCK}
     <a href="/blog/iptv-gratis-proefperiode" class="pricing-card-cta">Start gratis test</a>
   </div>
 </div>
-<img src="/img/blog/article-11/image-02.webp" alt="Geniet van online televisie op een groot scherm in een stijlvolle, moderne woonkamer." class="article-image" />
+<img src="/img/blog/article-04/image-02.webp" alt="Geniet van online televisie op een groot scherm in een stijlvolle, moderne woonkamer." class="article-image" />
 
 <p>
   Wil je op meerdere apparaten tegelijk kijken of de volledige prijsvergelijking bekijken? Ga dan naar onze <a href="/prijzen" class="internal-link">prijzenpagina</a> of lees stap voor stap hoe bestellen werkt in <a href="/iptv-kopen" class="internal-link">IPTV kopen in Nederland: zo werkt het</a>.
@@ -534,7 +534,7 @@ ${ARTICLE_STYLE_BLOCK}
     content: `
 ${ARTICLE_STYLE_BLOCK}
 
-<img src="/img/blog/article-08/cover.webp" alt="Vrienden kijken samen ontspannen tv op de bank" class="article-image" />
+<img src="/img/blog/article-03/cover.webp" alt="Vrienden kijken samen ontspannen tv op de bank" class="article-image" />
 
 <p>
   Voordat je een <span class="highlight">IPTV abonnement</span> afsluit, wil je natuurlijk zeker weten dat alles soepel draait op jouw eigen televisie, mediaspeler en internetverbinding. Een belofte op een website zegt immers weinig als het beeld op jouw scherm niet vloeiend is of als de zenders die jij belangrijk vindt ontbreken. Daar is een <strong>gratis proefperiode</strong> voor bedoeld.
@@ -1240,7 +1240,7 @@ ${ARTICLE_STYLE_BLOCK}
   Houd er rekening mee dat apps van derden na een proefperiode soms een activatiebijdrage aan de app-maker vragen[cite: 1]. Heb je hulp nodig bij het koppelen van een Device Key of MAC-adres op je tv? Stuur ons dan een bericht via WhatsApp[cite: 1].
 </p>
 
-<img src="/img/blog/article-02/image-02.webp" alt="Kijker met popcorn geniet van films en live tv via een IPTV-speler" class="article-image" />
+<img src="/img/blog/article-01/image-01.webp" alt="Kijker met popcorn geniet van films en live tv via een IPTV-speler" class="article-image" />
 
 <h3>IPTVX, GSE Smart IPTV en VLC: voor Apple en computer</h3>
 
@@ -1285,7 +1285,7 @@ ${ARTICLE_STYLE_BLOCK}
   <li><strong>Alle apparaten op één pagina:</strong> bekijk het centrale overzicht op onze <a href="/installatie" class="internal-link">installatiehandleiding</a>[cite: 1].</li>
 </ul>
 
-<img src="/img/blog/article-02/image-01.webp" alt="Gezin kijkt samen ontspannen tv in de woonkamer" class="article-image" />
+<img src="/img/blog/article-01/image-02.webp" alt="Gezin kijkt samen ontspannen tv in de woonkamer" class="article-image" />
 
 <h2>Slim testen voordat je kiest</h2>
 
