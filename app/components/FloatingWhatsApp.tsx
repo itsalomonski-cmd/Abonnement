@@ -2,8 +2,11 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { Send, X } from 'lucide-react';
-import { CONSTANTS, WHATSAPP_AVAILABLE } from '@/lib/seo';
-import { handOffToWhatsApp } from '@/lib/whatsapp-handoff';
+import { CONSTANTS, WHATSAPP_AVAILABLE, whatsappUrl } from '@/lib/seo';
+
+// Longest message accepted by the widget. Keeps the prefilled WhatsApp link
+// well within URL length limits of browsers and the WhatsApp apps.
+const MAX_MESSAGE_LENGTH = 1000;
 
 
 function getCurrentTime() {
@@ -115,37 +118,45 @@ export default function FloatingWhatsApp() {
     return () => document.removeEventListener('keydown', handleEscape);
   }, []);
 
+  const [error, setError] = useState('');
+  // Last WhatsApp link opened, offered as a manual link in case the browser
+  // blocked the new tab.
+  const [lastUrl, setLastUrl] = useState('');
+
+  // Opens WhatsApp with the visitor's exact message prefilled (owner decision,
+  // 24 Nov 2026), via the same central destination as the pricing cards
+  // (whatsappUrl in lib/seo.ts, which URL-encodes the text). Nothing is sent
+  // by this website: the visitor reviews the message in WhatsApp and sends it
+  // there, and the confirmation below says exactly that.
   const sendToWhatsapp = () => {
-    if (!message.trim()) return;
-
-    setChatHistory((prev) => [...prev, { sender: 'user', text: message, time: getCurrentTime() }]);
-
-    // The typed text is never put in the URL: it is copied to the clipboard
-    // and the plain WhatsApp chat is opened (see lib/whatsapp-handoff.ts).
-    const { opened, copied } = handOffToWhatsApp(message);
-    const typed = message;
-    setMessage('');
-    copied.then((ok) => {
-      setChatHistory((prev) => [
-        ...prev,
-        {
-          sender: 'support',
-          text: !opened
-            ? 'WhatsApp kon niet worden geopend. Sta pop-ups toe en probeer het opnieuw.'
-            : ok
-              ? 'Je bericht is gekopieerd. Plak het in WhatsApp en verstuur het daar.'
-              : `Plak dit bericht in WhatsApp en verstuur het daar: ${typed}`,
-          time: getCurrentTime(),
-        },
-      ]);
-    });
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      sendToWhatsapp();
+    if (!message.trim()) {
+      setError('Typ eerst je bericht.');
+      inputRef.current?.focus();
+      return;
     }
+    setError('');
+
+    const typed = message;
+    const url = whatsappUrl(typed);
+    // Opened synchronously inside the click/Enter so pop-up blockers allow
+    // it. Without the "noopener" feature window.open() returns the window,
+    // which tells us whether it was blocked; the opener link is cut manually.
+    const win = window.open(url, '_blank');
+    if (win) win.opener = null;
+    setLastUrl(url);
+
+    setChatHistory((prev) => [
+      ...prev,
+      { sender: 'user', text: typed, time: getCurrentTime() },
+      {
+        sender: 'support',
+        text: win
+          ? 'WhatsApp is geopend met je bericht. Controleer het en tik daar op Verzenden.'
+          : 'WhatsApp kon niet automatisch worden geopend. Gebruik de link hieronder.',
+        time: getCurrentTime(),
+      },
+    ]);
+    setMessage('');
   };
 
   // No verified WhatsApp number yet (lib/seo.ts): do not show a chat launcher
@@ -256,29 +267,62 @@ export default function FloatingWhatsApp() {
                 </div>
               </div>
             ))}
+            {lastUrl && (
+              <a
+                href={lastUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="self-center text-xs sm:text-sm font-semibold text-green-700 underline underline-offset-2 hover:text-green-800"
+              >
+                Opent WhatsApp niet? Open WhatsApp met je bericht
+              </a>
+            )}
             <div ref={chatEndRef} />
           </div>
 
           {/* Input Box */}
-          <div className="p-3 bg-white border-t flex gap-2 items-center flex-shrink-0">
-            <input
-              ref={inputRef}
-              type="text"
-              placeholder="Typ een bericht..."
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              onKeyDown={handleKeyPress}
-              className="flex-1 rounded-full px-4 py-2.5 sm:py-3 border border-slate-200 outline-none bg-white text-gray-700 text-sm sm:text-base placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 transition min-w-0"
-            />
-            <button
-              onClick={sendToWhatsapp}
-              disabled={!message.trim()}
-              className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 disabled:opacity-50 text-white p-2.5 sm:p-3 rounded-full shadow-md transition-transform hover:scale-105 disabled:hover:scale-100 flex-shrink-0"
-              aria-label="Verstuur bericht via WhatsApp"
-            >
-              <Send size={18} className="w-4 h-4 sm:w-[18px] sm:h-[18px]" />
-            </button>
-          </div>
+          <form
+            className="p-3 bg-white border-t flex-shrink-0"
+            noValidate
+            onSubmit={(e) => {
+              e.preventDefault();
+              sendToWhatsapp();
+            }}
+          >
+            {error && (
+              <p id="whatsapp-message-error" role="alert" className="text-xs text-red-600 font-medium mb-2 px-2">
+                {error}
+              </p>
+            )}
+            <div className="flex gap-2 items-center">
+              <input
+                ref={inputRef}
+                type="text"
+                placeholder="Typ een bericht..."
+                aria-label="Je bericht"
+                maxLength={MAX_MESSAGE_LENGTH}
+                enterKeyHint="send"
+                value={message}
+                onChange={(e) => {
+                  setMessage(e.target.value);
+                  if (error) setError('');
+                }}
+                aria-invalid={error ? true : undefined}
+                aria-describedby={error ? 'whatsapp-message-error' : undefined}
+                className="flex-1 rounded-full px-4 py-2.5 sm:py-3 border border-slate-200 outline-none bg-white text-gray-700 text-sm sm:text-base placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 transition min-w-0"
+              />
+              <button
+                type="submit"
+                aria-disabled={!message.trim()}
+                className={`bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white p-2.5 sm:p-3 rounded-full shadow-md transition-transform flex-shrink-0 ${
+                  message.trim() ? 'hover:scale-105' : 'opacity-50'
+                }`}
+                aria-label="Open WhatsApp met dit bericht"
+              >
+                <Send size={18} className="w-4 h-4 sm:w-[18px] sm:h-[18px]" />
+              </button>
+            </div>
+          </form>
         </div>
       )}
 

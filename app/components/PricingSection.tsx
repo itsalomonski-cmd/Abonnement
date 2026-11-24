@@ -593,12 +593,14 @@ export default function PricingSection() {
 
       {/* WhatsApp redirect notice (polite live region: announced, not
           focus-stealing). Portalled to <body> so `fixed` is relative to the
-          viewport, not to an animated (transformed) ancestor. */}
+          viewport, not to an animated (transformed) ancestor. z-[33] keeps it
+          below the floating WhatsApp chat window (z-[34]) and launcher
+          (z-[35]), so it can never cover the chat form on small screens. */}
       {hasMounted && WHATSAPP_AVAILABLE && createPortal(
       <div
         role="status"
         aria-live="polite"
-        className="fixed inset-x-4 bottom-24 md:bottom-28 z-[40] flex justify-center pointer-events-none"
+        className="fixed inset-x-4 bottom-24 md:bottom-28 z-[33] flex justify-center pointer-events-none"
       >
         {redirectUrl && (
           <div className="pointer-events-auto w-full max-w-md bg-[#0F2942] border-2 border-[#39FF14] rounded-2xl shadow-2xl px-5 py-4 flex items-start gap-3">

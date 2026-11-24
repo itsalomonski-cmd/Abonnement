@@ -96,9 +96,12 @@ export const CONSTANTS = {
 // makes all WhatsApp buttons lead to the customer-service page instead of to
 // an unverified destination.
 //
-// Only site-generated texts (e.g. "Ik wil graag het abonnement van 3 maanden")
-// may be passed as `message`. Text typed by visitors (names, e-mail addresses,
-// questions) must never be put in a URL: see lib/whatsapp-handoff.ts.
+// `message` is URL-encoded here. Site-generated texts (e.g. "Ik wil graag het
+// abonnement van 3 maanden") are passed everywhere. The one exception is the
+// floating WhatsApp widget, which prefills the visitor's own typed message at
+// the owner's request (24 Nov 2026); that text then passes through the
+// destination's redirect. The /klantenservice contact form still keeps typed
+// text out of URLs: see lib/whatsapp-handoff.ts.
 // ---------------------------------------------------------------------------
 export const WHATSAPP_AVAILABLE = /^https:\/\/(wa\.me\/\d{8,15}|support-tv\.online)$/.test(
   CONSTANTS.CONTACT.whatsappUrl
