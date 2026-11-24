@@ -53,20 +53,21 @@ export const CONSTANTS = {
   LOGO_IMAGE,
 
   // Business contact details.
-  // ⚠️ OWNER INPUT REQUIRED: no IPTVAbonnement mailbox, phone number or
-  // WhatsApp number has been confirmed yet, so all three stay empty and the UI
-  // hides them.
+  // ⚠️ OWNER INPUT REQUIRED: no IPTVAbonnement mailbox or phone number has
+  // been confirmed yet, so both stay empty and the UI hides them.
   //
-  // whatsappUrl must be a DIRECT WhatsApp click-to-chat link of the form
-  // https://wa.me/<international number, digits only>, e.g. https://wa.me/31612345678.
-  // Any other value (including third-party redirect domains) is rejected by
-  // WHATSAPP_AVAILABLE below. The previous value, https://support-tv.online,
-  // was an unverified third-party redirect inherited from the source project
-  // and has been removed (Phase 2).
+  // whatsappUrl: the WhatsApp destination of the original template,
+  // https://support-tv.online, restored at the owner's explicit instruction
+  // (24 Nov 2026). Checked 24 Nov 2026: it 302-redirects to
+  // https://wa.me/212723870095/ and forwards the `?text=` query, so prefilled
+  // order messages arrive intact. The redirect is controlled by whoever runs
+  // that domain: if it ever stops working, replace it with the direct
+  // https://wa.me/<number> link. Only those two forms are accepted by
+  // WHATSAPP_AVAILABLE below.
   CONTACT: {
     email: '', // ⚠️ Add a verified IPTVAbonnement email address
     phone: '', // ⚠️ Add a verified phone number
-    whatsappUrl: '', // ⚠️ Add the verified https://wa.me/<number> link
+    whatsappUrl: 'https://support-tv.online',
     supportHours: 'Klantenservice via WhatsApp',
   },
 
@@ -89,17 +90,19 @@ export const CONSTANTS = {
 
 // ---------------------------------------------------------------------------
 // WHATSAPP CTA DESTINATION
-// Every WhatsApp button on the site goes through whatsappUrl(). Only a direct
-// https://wa.me/<number> link is accepted. Until a verified number is set in
-// CONSTANTS.CONTACT.whatsappUrl, all WhatsApp buttons lead to the
-// customer-service page, which states that WhatsApp contact is not yet
-// available, instead of to an unverified destination.
+// Every WhatsApp button on the site goes through whatsappUrl(). Accepted
+// destinations: a direct https://wa.me/<number> link, or the owner-approved
+// redirect https://support-tv.online (see CONSTANTS.CONTACT). Any other value
+// makes all WhatsApp buttons lead to the customer-service page instead of to
+// an unverified destination.
 //
 // Only site-generated texts (e.g. "Ik wil graag het abonnement van 3 maanden")
 // may be passed as `message`. Text typed by visitors (names, e-mail addresses,
 // questions) must never be put in a URL: see lib/whatsapp-handoff.ts.
 // ---------------------------------------------------------------------------
-export const WHATSAPP_AVAILABLE = /^https:\/\/wa\.me\/\d{8,15}$/.test(CONSTANTS.CONTACT.whatsappUrl);
+export const WHATSAPP_AVAILABLE = /^https:\/\/(wa\.me\/\d{8,15}|support-tv\.online)$/.test(
+  CONSTANTS.CONTACT.whatsappUrl
+);
 
 /** Page that explains the contact options while WhatsApp is not configured. */
 export const CONTACT_FALLBACK_PATH = '/klantenservice';

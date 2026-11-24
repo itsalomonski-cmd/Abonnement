@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useId, useState } from 'react';
-import { CONSTANTS, FREE_TRIAL_WHATSAPP_URL, WHATSAPP_LINK_TARGET } from '@/lib/seo';
+import { CONSTANTS, FREE_TRIAL_WHATSAPP_URL, WHATSAPP_LINK_TARGET, whatsappUrl } from '@/lib/seo';
 import { buyFaqs } from '@/lib/page-faqs';
 import { LOWEST_PRICE, formatEUR } from '@/lib/pricing';
 import { useHasMounted } from '@/hooks/use-has-mounted';
@@ -504,13 +504,15 @@ export default function IptvKopenPage() {
                 Bekijk de prijzen
                 <ArrowRight className="w-5 h-5" />
               </Link>
-              <Link
-                href="/klantenservice"
+              <a
+                href={whatsappUrl(`Hallo ${CONSTANTS.BRAND_NAME}! Ik heb een vraag over het kopen van een IPTV abonnement.`)}
+                target={WHATSAPP_LINK_TARGET}
+                rel="noopener noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-[#18181B] text-[#F8FAFC] font-black text-sm uppercase tracking-widest shadow-lg hover:scale-105 transition-all border border-[#27272A] hover:border-[#39FF14] cursor-pointer"
               >
                 <MessageCircle className="w-5 h-5 text-[#39FF14]" />
                 Vraag het via WhatsApp
-              </Link>
+              </a>
             </div>
           </FadeIn>
         </div>

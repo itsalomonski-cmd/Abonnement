@@ -1,6 +1,8 @@
 'use client';
 
-import { useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { createPortal } from 'react-dom';
+import { useHasMounted } from '@/hooks/use-has-mounted';
 import { m, AnimatePresence } from 'framer-motion';
 import { FadeIn, FadeInStagger, FadeInItem } from './AnimatedSection';
 import { CONSTANTS, FREE_TRIAL_WHATSAPP_URL, WHATSAPP_AVAILABLE, whatsappUrl } from '@/lib/seo';
@@ -225,6 +227,15 @@ export default function PricingSection() {
     openContact(FREE_TRIAL_WHATSAPP_URL);
   };
 
+  // Notice shown while WhatsApp opens. It carries the same URL as a manual
+  // link, because a "noopener" window.open() gives no way to detect a blocked
+  // pop-up. The notice only says WhatsApp is being opened, never that an
+  // order was placed.
+  const [redirectUrl, setRedirectUrl] = useState<string | null>(null);
+  const noticeTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  useEffect(() => () => clearTimeout(noticeTimer.current), []);
+  const hasMounted = useHasMounted();
+
   // Without a verified WhatsApp number whatsappUrl() returns the internal
   // customer-service page: open that in the same tab instead of a new one.
   function openContact(url: string) {
@@ -232,7 +243,13 @@ export default function PricingSection() {
       window.location.assign(url);
       return;
     }
+    // Opened synchronously inside the click so pop-up blockers allow it.
+    // wa.me opens the WhatsApp app on phones and WhatsApp Web/Desktop on
+    // computers.
     window.open(url, '_blank', 'noopener,noreferrer');
+    setRedirectUrl(url);
+    clearTimeout(noticeTimer.current);
+    noticeTimer.current = setTimeout(() => setRedirectUrl(null), 8000);
   }
 
   const baseFeatures = [
@@ -573,6 +590,42 @@ export default function PricingSection() {
           </div>
         </FadeIn>
       </div>
+
+      {/* WhatsApp redirect notice (polite live region: announced, not
+          focus-stealing). Portalled to <body> so `fixed` is relative to the
+          viewport, not to an animated (transformed) ancestor. */}
+      {hasMounted && WHATSAPP_AVAILABLE && createPortal(
+      <div
+        role="status"
+        aria-live="polite"
+        className="fixed inset-x-4 bottom-24 md:bottom-28 z-[40] flex justify-center pointer-events-none"
+      >
+        {redirectUrl && (
+          <div className="pointer-events-auto w-full max-w-md bg-[#0F2942] border-2 border-[#39FF14] rounded-2xl shadow-2xl px-5 py-4 flex items-start gap-3">
+            <p className="flex-1 text-sm font-bold text-[#F8FAFC] leading-relaxed">
+              Je wordt doorgestuurd naar WhatsApp om je abonnement af te ronden.{' '}
+              <a
+                href={redirectUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#39FF14] underline underline-offset-2 hover:text-[#FFD700]"
+              >
+                Opent WhatsApp niet? Klik hier.
+              </a>
+            </p>
+            <button
+              type="button"
+              onClick={() => setRedirectUrl(null)}
+              aria-label="Melding sluiten"
+              className="shrink-0 text-[#94A3B8] hover:text-[#F8FAFC] text-lg leading-none cursor-pointer"
+            >
+              ×
+            </button>
+          </div>
+        )}
+      </div>,
+      document.body
+      )}
     </section>
   );
 }
