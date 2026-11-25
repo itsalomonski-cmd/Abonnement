@@ -47,7 +47,8 @@ const OG_IMAGE = CONSTANTS.OG_IMAGE;
 // ---------------------------------------------------------------------------
 // SEO STRINGS (homepage defaults; every other page sets its own metadata)
 // ---------------------------------------------------------------------------
-const SEO_TITLE = `IPTV Abonnement Kopen | Live TV, Films & 24u Gratis Test`;
+// "24 Uur" (not "24u") matches the wording used on the page itself.
+const SEO_TITLE = `IPTV Abonnement Kopen | Live TV, Films & 24 Uur Gratis Test`;
 const SEO_DESCRIPTION =
   `Probeer jouw IPTV abonnement eerst 24 uur gratis! Kijk 4K live tv, films en series op elk apparaat. Vanaf € 31 voor 3 maanden.`;
 

@@ -199,11 +199,13 @@ export default function ArticleScrollSidebar({
                 const relReadTime = getPostReadMinutes(relPost);
                 const relDate = formatPostDate(relPost.date);
 
+                // The link is the article title only (concise anchor text); its
+                // ::after covers this card (made `relative`, no layout change),
+                // so the whole card stays clickable.
                 return (
-                  <Link
+                  <div
                     key={relPost.slug}
-                    href={`/blog/${relPost.slug}`}
-                    className="group block bg-[#09090B] rounded-2xl overflow-hidden border-2 border-[#27272A] hover:border-[#39FF14] hover:shadow-[0_15px_35px_rgba(57,255,20,0.15)] hover:-translate-y-1 transition-all duration-500 cursor-pointer"
+                    className="group relative block bg-[#09090B] rounded-2xl overflow-hidden border-2 border-[#27272A] hover:border-[#39FF14] hover:shadow-[0_15px_35px_rgba(57,255,20,0.15)] hover:-translate-y-1 transition-all duration-500 cursor-pointer"
                   >
                     <div className="relative aspect-[16/10] overflow-hidden bg-[#09090B]">
                       <img
@@ -238,7 +240,12 @@ export default function ArticleScrollSidebar({
                       </div>
 
                       <h3 className="text-sm font-black text-[#F8FAFC] uppercase tracking-tight leading-snug mb-2 line-clamp-2 group-hover:text-[#39FF14] transition-colors">
-                        {relPost.title}
+                        <Link
+                          href={`/blog/${relPost.slug}`}
+                          className="after:absolute after:inset-0 after:z-20 after:rounded-2xl focus-visible:outline-none focus-visible:after:outline focus-visible:after:outline-2 focus-visible:after:outline-[#39FF14]"
+                        >
+                          {relPost.title}
+                        </Link>
                       </h3>
 
                       <p className="text-[#94A3B8] text-xs font-medium leading-relaxed line-clamp-2 mb-3">
@@ -255,7 +262,7 @@ export default function ArticleScrollSidebar({
                         </div>
                       </div>
                     </div>
-                  </Link>
+                  </div>
                 );
               })}
             </div>

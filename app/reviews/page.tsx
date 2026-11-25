@@ -59,7 +59,7 @@ function CountryFlag({
   const cls = `${dim} rounded-full shrink-0 shadow-md border border-white/20 overflow-hidden`;
 
   return (
-    <svg className={cls} viewBox="0 0 32 32" aria-label="Nederlandse vlag">
+    <svg className={cls} viewBox="0 0 32 32" role="img" aria-label="Nederlandse vlag">
       <clipPath id={`${uid}-nl`}>
         <circle cx="16" cy="16" r="16" />
       </clipPath>

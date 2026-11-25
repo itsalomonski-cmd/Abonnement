@@ -36,6 +36,28 @@ const BRAND = CONSTANTS.BRAND_NAME;
 // ---------------------------------------------------------------------------
 // LANDVLOGGEN — volledige ondersteuning voor elk land in channels-data.ts
 // ---------------------------------------------------------------------------
+// Accessible names for the flag images (CountryCode from lib/channels-data.ts;
+// 'EU' and 'ME' are regions, not countries).
+const COUNTRY_NAMES_NL: Record<CountryCode, string> = {
+  US: 'Verenigde Staten',
+  UK: 'Verenigd Koninkrijk',
+  CA: 'Canada',
+  AU: 'Australië',
+  EU: 'Europese Unie',
+  CN: 'China',
+  IN: 'India',
+  PK: 'Pakistan',
+  JP: 'Japan',
+  KR: 'Zuid-Korea',
+  ME: 'Midden-Oosten',
+  PH: 'Filipijnen',
+  TH: 'Thailand',
+  VN: 'Vietnam',
+  ID: 'Indonesië',
+  MY: 'Maleisië',
+  NZ: 'Nieuw-Zeeland',
+};
+
 function CountryFlag({
   country,
   size = 'md',
@@ -49,8 +71,10 @@ function CountryFlag({
   const cls = `${dim} rounded-full shadow-md shrink-0 border-2 border-white/20 overflow-hidden`;
   const cid = `cf-${country}-${uid}`;
 
+  // role="img" is required for the aria-label to name the SVG; the name is the
+  // readable Dutch country/region instead of the two-letter code.
   const wrap = (children: React.ReactNode) => (
-    <svg className={cls} viewBox="0 0 32 32" aria-label={`${country} vlag`}>
+    <svg className={cls} viewBox="0 0 32 32" role="img" aria-label={COUNTRY_NAMES_NL[country]}>
       <clipPath id={cid}>
         <circle cx="16" cy="16" r="16" />
       </clipPath>

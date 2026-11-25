@@ -35,7 +35,7 @@ const BRAND = CONSTANTS.BRAND_NAME;
 // ---------------------------------------------------------------------------
 // METADATA TEXT (used by app/blog/page.tsx and app/blog/pagina/[page]/page.tsx)
 // ---------------------------------------------------------------------------
-export const BLOG_TITLE = 'IPTV Blog: Uitleg, Tips, Gidsen & Meer | IPTVAbonnement';
+export const BLOG_TITLE = 'IPTV Blog: Uitleg, Tips & Handleidingen | IPTVAbonnement';
 export const BLOG_DESCRIPTION =
   'Handleidingen en tips over IPTV: wat IPTV is, installeren op Smart TV en Fire TV Stick, de beste apps en haperend beeld oplossen.';
 
@@ -184,9 +184,10 @@ function BlogCard({ post, priority = false }: { post: BlogPost; priority?: boole
   const readTime = getReadTime(post);
   const dateStr = formatPostDate(post.date);
 
+  // The link is the article title only (concise anchor text); its ::after
+  // covers this `relative` card, so the whole card stays clickable.
   return (
-    <Link
-      href={`/blog/${post.slug}`}
+    <div
       className="group relative flex flex-col bg-[#18181B] rounded-3xl overflow-hidden border border-[#27272A] hover:border-[#39FF14] hover:shadow-[0_20px_50px_rgba(57,255,20,0.15)] hover:-translate-y-2 transition-all duration-500 cursor-pointer"
     >
       <div className="relative aspect-[16/10] overflow-hidden bg-[#09090B]">
@@ -225,7 +226,12 @@ function BlogCard({ post, priority = false }: { post: BlogPost; priority?: boole
         </div>
 
         <h3 className="text-base md:text-lg font-black text-[#F8FAFC] uppercase tracking-tight leading-snug mb-3 line-clamp-2 group-hover:text-[#39FF14] transition-colors">
-          {post.title}
+          <Link
+            href={`/blog/${post.slug}`}
+            className="after:absolute after:inset-0 after:z-20 after:rounded-3xl focus-visible:outline-none focus-visible:after:outline focus-visible:after:outline-2 focus-visible:after:outline-[#39FF14]"
+          >
+            {post.title}
+          </Link>
         </h3>
 
         <p className="text-[#94A3B8] text-sm font-medium leading-relaxed line-clamp-3 mb-4 flex-1">
@@ -242,7 +248,7 @@ function BlogCard({ post, priority = false }: { post: BlogPost; priority?: boole
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }
 
@@ -254,9 +260,10 @@ function FeaturedCard({ post }: { post: BlogPost }) {
   const readTime = getReadTime(post);
   const dateStr = formatPostDate(post.date);
 
+  // The link is the article title only (concise anchor text); its ::after
+  // covers this `relative` card, so the whole card stays clickable.
   return (
-    <Link
-      href={`/blog/${post.slug}`}
+    <div
       className="group relative grid grid-cols-1 lg:grid-cols-2 gap-0 bg-[#18181B] rounded-[2rem] overflow-hidden border border-[#27272A] hover:border-[#39FF14] hover:shadow-[0_25px_60px_rgba(57,255,20,0.15)] transition-all duration-500 cursor-pointer"
     >
       <div className="relative aspect-[16/10] lg:aspect-auto lg:min-h-[420px] overflow-hidden bg-[#09090B]">
@@ -297,7 +304,12 @@ function FeaturedCard({ post }: { post: BlogPost }) {
         </div>
 
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-[#F8FAFC] uppercase tracking-tight leading-tight mb-4 group-hover:text-[#39FF14] transition-colors">
-          {post.title}
+          <Link
+            href={`/blog/${post.slug}`}
+            className="after:absolute after:inset-0 after:z-20 after:rounded-[2rem] focus-visible:outline-none focus-visible:after:outline focus-visible:after:outline-2 focus-visible:after:outline-[#39FF14]"
+          >
+            {post.title}
+          </Link>
         </h2>
 
         <p className="text-[#94A3B8] text-sm md:text-base font-medium leading-relaxed mb-6 line-clamp-3">
@@ -314,7 +326,7 @@ function FeaturedCard({ post }: { post: BlogPost }) {
           </span>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }
 

@@ -137,9 +137,9 @@ export default function Footer() {
 
           {/* Navigation Links */}
           <div className="lg:col-span-2">
-            <h3 className="text-[#F8FAFC] font-black mb-5 tracking-widest uppercase text-sm border-b-2 border-[#39FF14] pb-1 inline-block">
+            <p className="text-[#F8FAFC] font-black mb-5 tracking-widest uppercase text-sm border-b-2 border-[#39FF14] pb-1 inline-block">
               Navigatie
-            </h3>
+            </p>
             <ul className="space-y-3 text-sm font-bold">
               {navigationLinks.map((link) => (
                 <li key={link.name}>
@@ -156,9 +156,9 @@ export default function Footer() {
 
           {/* Channel Packages */}
           <div className="lg:col-span-3">
-            <h3 className="text-[#F8FAFC] font-black mb-5 tracking-widest uppercase text-sm border-b-2 border-[#39FF14] pb-1 inline-block">
+            <p className="text-[#F8FAFC] font-black mb-5 tracking-widest uppercase text-sm border-b-2 border-[#39FF14] pb-1 inline-block">
               Zenderpakketten
-            </h3>
+            </p>
             <ul className="space-y-3 text-sm font-bold">
               {channelsData.map((category) => (
                 <li key={category.slug}>
@@ -175,9 +175,9 @@ export default function Footer() {
 
           {/* Legal Links */}
           <div className="lg:col-span-2">
-            <h3 className="text-[#F8FAFC] font-black mb-5 tracking-widest uppercase text-sm border-b-2 border-[#39FF14] pb-1 inline-block">
+            <p className="text-[#F8FAFC] font-black mb-5 tracking-widest uppercase text-sm border-b-2 border-[#39FF14] pb-1 inline-block">
               Juridisch
-            </h3>
+            </p>
             <ul className="space-y-3 text-sm font-bold">
               {legalLinks.map((link) => (
                 <li key={link.name}>

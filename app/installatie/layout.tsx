@@ -6,7 +6,8 @@ import { faqPlainText } from '@/lib/faq-text';
 
 const PATH = '/installatie';
 const PAGE_URL = absoluteUrl(PATH);
-const TITLE = 'IPTV Installeren: Handleiding per Apparaat | IPTVAbonnement';
+// Wording matches the H1 ("IPTV installeren stap voor stap") and page text.
+const TITLE = 'IPTV Installeren: Stap voor Stap per Apparaat | IPTVAbonnement';
 const DESCRIPTION =
   'IPTV installeren op Smart TV, Fire Stick, Apple TV, iPhone of pc? Volg de handleiding met IPTV Smarters Pro of vraag hulp via WhatsApp.';
 

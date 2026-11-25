@@ -510,7 +510,7 @@ ${ARTICLE_STYLE_BLOCK}
   {
     id: '2',
     slug: 'iptv-gratis-proefperiode',
-    metatitle: 'IPTV gratis proefperiode: zo test je slim voor je koopt (2026)',
+    metatitle: 'IPTV gratis proefperiode: zo test je slim (2026)',
     metadescription:
       'IPTV gratis proefperiode gebruiken in Nederland: zo test je beeldkwaliteit, stabiliteit tijdens live sport, tv-gids en aanbod voordat je een abonnement kiest.',
     title: 'IPTV gratis proefperiode: zo test je slim',
@@ -909,7 +909,7 @@ ${ARTICLE_STYLE_BLOCK}
   {
     id: '4',
     slug: 'iptv-firestick-installeren',
-    metatitle: 'IPTV installeren op een Fire TV Stick: compleet stappenplan (2026)',
+    metatitle: 'IPTV installeren op een Fire TV Stick: stappenplan (2026)',
     metadescription:
       'IPTV installeren op een Amazon Fire TV Stick in Nederland: ontwikkelaarsopties aanzetten, Downloader-app gebruiken, IPTV Smarters of TiviMate instellen en buffering voorkomen.',
     title: 'IPTV installeren op een Fire TV Stick',

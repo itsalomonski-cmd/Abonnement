@@ -431,7 +431,7 @@ export default function SupportPage() {
                         </option>
                       </select>
                       <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#94A3B8]">
-                        <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                        <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true">
                           <path d="M7 10l5 5 5-5z" />
                         </svg>
                       </div>

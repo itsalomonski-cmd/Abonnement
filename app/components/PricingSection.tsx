@@ -55,27 +55,29 @@ const PaymentIcons = ({ variant = 'light' }: { variant?: 'light' | 'dark' }) => 
   const shellBorder = isDark ? 'rgba(255,215,0,0.45)' : 'rgba(57,255,20,0.30)';
 
   return (
-    <div className="grid grid-cols-4 gap-2 items-center" aria-label="Betaalmethoden: Visa, Mastercard, PayPal en Bitcoin">
+    // role="group" makes the existing aria-label apply (it is ignored on a
+    // plain div); each logo is a named image (role="img" + aria-label).
+    <div className="grid grid-cols-4 gap-2 items-center" role="group" aria-label="Betaalmethoden: Visa, Mastercard, PayPal en Bitcoin">
       <PaymentShell border={shellBorder}>
-        <svg viewBox="0 0 48 32" className="h-5 w-auto" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 48 32" className="h-5 w-auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Visa">
           <text x="24" y="22" textAnchor="middle" fontFamily="Helvetica, Arial, sans-serif" fontSize="14" fontWeight="900" fontStyle="italic" fill="#F8FAFC" letterSpacing="-0.5">VISA</text>
         </svg>
       </PaymentShell>
       <PaymentShell border={shellBorder}>
-        <svg viewBox="0 0 48 32" className="h-5 w-auto" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 48 32" className="h-5 w-auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mastercard">
           <circle cx="19" cy="16" r="9" fill="#EB001B" />
           <circle cx="29" cy="16" r="9" fill="#F79E1B" />
           <path d="M24 8.5a9 9 0 000 15 9 9 0 000-15z" fill="#FF5F00" />
         </svg>
       </PaymentShell>
       <PaymentShell border={shellBorder}>
-        <svg viewBox="0 0 48 32" className="h-5 w-auto" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 48 32" className="h-5 w-auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PayPal">
           <text x="24" y="21" textAnchor="middle" fontFamily="Helvetica, Arial, sans-serif" fontSize="11" fontWeight="900" fontStyle="italic" fill="#60A5FA">Pay</text>
           <text x="24" y="27" textAnchor="middle" fontFamily="Helvetica, Arial, sans-serif" fontSize="9" fontWeight="800" fontStyle="italic" fill="#93C5FD">Pal</text>
         </svg>
       </PaymentShell>
       <PaymentShell border={shellBorder}>
-        <svg viewBox="0 0 48 32" className="h-5 w-auto" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 48 32" className="h-5 w-auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bitcoin">
           <circle cx="24" cy="16" r="10" fill="#F7931A" />
           <text x="24" y="21" textAnchor="middle" fontFamily="Helvetica, Arial, sans-serif" fontSize="14" fontWeight="900" fill="#FFFFFF">₿</text>
         </svg>
@@ -339,7 +341,8 @@ export default function PricingSection() {
 
               <div className="relative z-10 flex flex-col">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-xs font-black text-[#39FF14] uppercase tracking-[0.2em]">Starter</h3>
+                  {/* Tier label (styling tag), not a heading; same classes. */}
+                  <p className="text-xs font-black text-[#39FF14] uppercase tracking-[0.2em]">Starter</p>
                   <MonitorPlay className="w-5 h-5 text-[#39FF14] transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110" />
                 </div>
                 <div className="text-3xl font-black text-[#F8FAFC] mb-2 tracking-tighter uppercase">3 maanden</div>
@@ -409,9 +412,9 @@ export default function PricingSection() {
 
               <div className="relative z-10 flex flex-col pt-2">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-xs font-black text-[#FFD700] uppercase tracking-[0.2em] flex items-center gap-1.5">
+                  <p className="text-xs font-black text-[#FFD700] uppercase tracking-[0.2em] flex items-center gap-1.5">
                     <Crown className="w-4 h-4 text-[#FFD700]" /> VIP
-                  </h3>
+                  </p>
                   <Sparkles className="w-4 h-4 text-[#FFD700] transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110" />
                 </div>
 
@@ -500,7 +503,7 @@ export default function PricingSection() {
 
               <div className="relative z-10 flex flex-col">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-xs font-black text-[#39FF14] uppercase tracking-[0.2em]">Premium</h3>
+                  <p className="text-xs font-black text-[#39FF14] uppercase tracking-[0.2em]">Premium</p>
                   <MonitorPlay className="w-5 h-5 text-[#39FF14] transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110" />
                 </div>
                 <div className="text-3xl font-black text-[#F8FAFC] mb-2 tracking-tighter uppercase">6 maanden</div>

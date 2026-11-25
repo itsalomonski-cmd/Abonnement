@@ -10,7 +10,7 @@ const PATH = '/reseller';
 const PAGE_URL = absoluteUrl(PATH);
 
 export const metadata: Metadata = generateSEOMetadata(
-  `IPTV Reseller Worden: Vanaf € 269 | IPTVAbonnement`,
+  `Word IPTV Reseller: Vanaf € 269 | IPTVAbonnement`,
   `Word IPTV reseller bij IPTVAbonnement: 10, 20 of 30 credits, eigen prijzen bepalen en direct klanten activeren.`,
   PATH
 );

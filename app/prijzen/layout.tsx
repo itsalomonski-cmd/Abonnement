@@ -10,7 +10,7 @@ const PAGE_URL = absoluteUrl(PATH);
 
 // Target intent: price comparison / "goedkoop IPTV abonnement".
 export const metadata: Metadata = generateSEOMetadata(
-  `IPTV Abonnement Prijzen: Vanaf € 31 + 24u Gratis Test`,
+  `IPTV Abonnement Prijzen: Vanaf € 31 + 24 Uur Gratis Test`,
   `Wat kost een IPTV abonnement? Bekijk pakketten voor 3, 6 of 12 maanden (1–3 apparaten) vanaf € 31. Eerst 24 uur gratis testen!`,
   PATH
 );

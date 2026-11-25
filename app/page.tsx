@@ -121,7 +121,9 @@ export default function Home() {
           <img
             {...responsiveImageProps('/img/background.webp', [640, 828, 1080, 1920])}
             sizes="100vw"
-            alt=""
+            // Accurate description of the photo for crawlers; aria-hidden keeps
+            // this background image silent for screen readers, as before.
+            alt="Gestreepte popcornbak en 3D-bril op een rode bioscoopstoel"
             fetchPriority="high"
             loading="eager"
             className="absolute inset-0 w-full h-full object-cover object-center brightness-[0.28]"
@@ -151,7 +153,9 @@ export default function Home() {
             />
             <img
               src={HIDDEN_IMG_PLACEHOLDER}
-              alt=""
+              // Abstract decorative artwork, described as such (no keywords);
+              // aria-hidden keeps it silent for screen readers.
+              alt="Abstracte groene neonlichtgolven"
               loading="eager"
               className="absolute inset-0 w-full h-full object-cover object-bottom-right opacity-80"
               aria-hidden="true"
@@ -646,7 +650,7 @@ export default function Home() {
             {[
               {
                 iconSvg: (
-                  <svg className="w-7 h-7 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <svg className="w-7 h-7 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
                   </svg>
                 ),
@@ -655,7 +659,7 @@ export default function Home() {
               },
               {
                 iconSvg: (
-                  <svg className="w-7 h-7 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <svg className="w-7 h-7 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 ),
@@ -664,7 +668,7 @@ export default function Home() {
               },
               {
                 iconSvg: (
-                  <svg className="w-7 h-7 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <svg className="w-7 h-7 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 ),
@@ -673,7 +677,7 @@ export default function Home() {
               },
               {
                 iconSvg: (
-                  <svg className="w-7 h-7 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <svg className="w-7 h-7 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                   </svg>
                 ),
@@ -682,7 +686,7 @@ export default function Home() {
               },
               {
                 iconSvg: (
-                  <svg className="w-7 h-7 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <svg className="w-7 h-7 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
                 ),
@@ -691,7 +695,7 @@ export default function Home() {
               },
               {
                 iconSvg: (
-                  <svg className="w-7 h-7 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <svg className="w-7 h-7 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                   </svg>
                 ),
@@ -759,7 +763,7 @@ export default function Home() {
                 channels: 'Live sport stelt de hoogste eisen aan je verbinding. Test het sportaanbod tijdens de gratis proefperiode.',
                 footer: ['Live', 'Sport'],
                 iconSvg: (
-                  <svg className="w-6 h-6 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <svg className="w-6 h-6 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                   </svg>
                 ),
@@ -769,7 +773,7 @@ export default function Home() {
                 channels: 'Zenders uit andere landen en in andere talen. Vraag via WhatsApp welke landen beschikbaar zijn.',
                 footer: ['HD', 'Live'],
                 iconSvg: (
-                  <svg className="w-6 h-6 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <svg className="w-6 h-6 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                   </svg>
                 ),
@@ -779,7 +783,7 @@ export default function Home() {
                 channels: 'Een bibliotheek met films en series die je start wanneer het jou uitkomt.',
                 footer: ['On demand', 'Beschikbaar'],
                 iconSvg: (
-                  <svg className="w-6 h-6 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <svg className="w-6 h-6 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
                   </svg>
                 ),
@@ -789,7 +793,7 @@ export default function Home() {
                 channels: 'Programma’s voor het hele gezin. Met 2 of 3 apparaten kijken kinderen op een eigen scherm.',
                 footer: ['HD', 'Gezin'],
                 iconSvg: (
-                  <svg className="w-6 h-6 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <svg className="w-6 h-6 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
                 ),
@@ -799,7 +803,7 @@ export default function Home() {
                 channels: 'Complete seizoenen on demand, in dezelfde app als je live zenders.',
                 footer: ['On demand', 'Beschikbaar'],
                 iconSvg: (
-                  <svg className="w-6 h-6 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <svg className="w-6 h-6 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5.636 18.364a9 9 0 010-12.728m12.728 0a9 9 0 010 12.728m-9.9-2.829a5 5 0 010-7.07m7.072 0a5 5 0 010 7.07M13 12a1 1 0 11-2 0 1 1 0 012 0z" />
                   </svg>
                 ),
@@ -809,7 +813,7 @@ export default function Home() {
                 channels: 'Programma’s over natuur, wetenschap en geschiedenis voor wie graag iets leert.',
                 footer: ['HD', 'Beschikbaar'],
                 iconSvg: (
-                  <svg className="w-6 h-6 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <svg className="w-6 h-6 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                   </svg>
                 ),
@@ -819,7 +823,7 @@ export default function Home() {
                 channels: 'Nieuws uit binnen- en buitenland. Controleer tijdens je proefperiode welke nieuwszenders erbij zitten.',
                 footer: ['HD', 'Live'],
                 iconSvg: (
-                  <svg className="w-6 h-6 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <svg className="w-6 h-6 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2.5 2.5 0 00-2.5-2.5H17" />
                   </svg>
                 ),
@@ -829,7 +833,7 @@ export default function Home() {
                 channels: 'Muziek, shows en entertainment voor elke smaak.',
                 footer: ['HD', 'Beschikbaar'],
                 iconSvg: (
-                  <svg className="w-6 h-6 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <svg className="w-6 h-6 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
                   </svg>
                 ),
@@ -844,9 +848,10 @@ export default function Home() {
                     <div className="w-10 h-10 rounded-xl bg-[#081425] flex items-center justify-center shrink-0 border border-[#39FF14]/40 shadow-md">
                       {item.iconSvg}
                     </div>
-                    <h3 className="font-black text-[#F8FAFC] text-base uppercase tracking-wider">
+                    {/* Tile label, not a section heading (same classes, same look). */}
+                    <p className="font-black text-[#F8FAFC] text-base uppercase tracking-wider">
                       {item.cat}
-                    </h3>
+                    </p>
                   </div>
                   <p className="text-[#94A3B8] font-semibold text-xs leading-relaxed">
                     {item.channels}
@@ -1302,7 +1307,10 @@ export default function Home() {
           <FadeInStagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
             {blogPosts.slice(0, 3).map((post) => (
               <div key={post.id} className="group cursor-pointer h-full">
-                <Link href={`/blog/${post.slug}`} className="block h-full">
+                {/* Card link = article title only (concise anchor text). The
+                    title link's ::after covers the whole card (this card div is
+                    `relative`), so the entire card stays clickable as before. */}
+                <div className="block h-full">
                   <div className="bg-[#0F2942] text-[#F8FAFC] rounded-3xl p-4 border-2 border-[#1E3A52] shadow-md hover:border-[#39FF14] hover:shadow-[0_20px_40px_rgba(57,255,20,0.15)] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between h-full relative">
                     <div>
                       <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#081425]">
@@ -1331,7 +1339,12 @@ export default function Home() {
 
                       <div className="p-4 pt-6">
                         <h3 className="text-lg font-black text-[#F8FAFC] mb-2.5 group-hover:text-[#39FF14] transition-colors tracking-tight line-clamp-2 uppercase leading-snug">
-                          {post.title}
+                          <Link
+                            href={`/blog/${post.slug}`}
+                            className="after:absolute after:inset-0 after:z-10 after:rounded-3xl focus-visible:outline-none focus-visible:after:outline focus-visible:after:outline-2 focus-visible:after:outline-[#39FF14]"
+                          >
+                            {post.title}
+                          </Link>
                         </h3>
 
                         <p className="text-[#94A3B8] text-xs font-semibold line-clamp-3 leading-relaxed mb-4">
@@ -1350,7 +1363,7 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                </Link>
+                </div>
               </div>
             ))}
           </FadeInStagger>
