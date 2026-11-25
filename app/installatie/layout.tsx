@@ -6,9 +6,9 @@ import { faqPlainText } from '@/lib/faq-text';
 
 const PATH = '/installatie';
 const PAGE_URL = absoluteUrl(PATH);
-const TITLE = 'IPTV installeren: handleiding per apparaat';
+const TITLE = 'IPTV Installeren: Handleiding per Apparaat | IPTVAbonnement';
 const DESCRIPTION =
-  'IPTV installeren op je Fire TV Stick, Smart TV, Apple TV, iPhone of computer. Stap-voor-stap handleiding met IPTV Smarters Pro en hulp via WhatsApp.';
+  'IPTV installeren op Smart TV, Fire Stick, Apple TV, iPhone of pc? Volg de handleiding met IPTV Smarters Pro of vraag hulp via WhatsApp.';
 
 export const metadata: Metadata = generateSEOMetadata(TITLE, DESCRIPTION, PATH);
 

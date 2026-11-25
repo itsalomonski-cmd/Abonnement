@@ -2,15 +2,13 @@
 import { MetadataRoute } from 'next';
 import { absoluteUrl, LEGAL_PAGES_FINAL, LEGAL_PATHS } from '@/lib/seo';
 import { blogPosts } from '@/lib/blog';
-import { channelsData } from '@/lib/channels-data';
 import { reviews } from '@/lib/reviews';
 
 // lastModified is only emitted where a real content date exists (blog posts,
 // and the blog index = its newest post). URLs without a known date omit it.
 // Pages that are noindex (the reviews page while it has no genuine reviews,
-// legal pages until they are final) are left out so the sitemap never lists a
-// URL that asks not to be indexed. Every channel category is indexable
-// (app/zenders/[slug]/page.tsx), so all of them are listed.
+// legal pages until they are final, and every /zenders/* channel category page)
+// are left out so the sitemap never lists a URL that asks not to be indexed.
 export default function sitemap(): MetadataRoute.Sitemap {
   const newestPostDate = blogPosts
     .map((post) => new Date(post.date))
@@ -43,12 +41,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ? LEGAL_PATHS.map((path) => ({ url: absoluteUrl(path), changeFrequency: 'yearly' as const, priority: 0.3 }))
     : [];
 
-  const channelPages: MetadataRoute.Sitemap = channelsData.map((category) => ({
-    url: absoluteUrl(`/zenders/${category.slug}`),
-    changeFrequency: 'weekly',
-    priority: 0.7,
-  }));
-
   const blogPostPages: MetadataRoute.Sitemap = blogPosts.map((post) => ({
     url: absoluteUrl(`/blog/${post.slug}`),
     lastModified: new Date(post.date),
@@ -56,5 +48,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...corePages, ...channelPages, ...blogPostPages, ...legalPages];
+  // /zenders/* pages are noindex (app/zenders/[slug]/page.tsx): not listed.
+  return [...corePages, ...blogPostPages, ...legalPages];
 }

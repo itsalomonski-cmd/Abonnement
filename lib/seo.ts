@@ -160,7 +160,7 @@ export const generateSEOMetadata = (
   // "{Page} | IPTVAbonnement"; a page name that already contains the brand is
   // used as-is. Returned as an absolute title so the root layout's template is
   // not appended a second time.
-  const formattedTitle = pageName.includes(BRAND_NAME) ? pageName : `${pageName} | ${BRAND_NAME}`;
+  const formattedTitle = pageName;
   const canonical = absoluteUrl(path);
   const index = !options.noindex;
 

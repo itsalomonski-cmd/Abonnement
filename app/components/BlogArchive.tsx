@@ -35,7 +35,7 @@ const BRAND = CONSTANTS.BRAND_NAME;
 // ---------------------------------------------------------------------------
 // METADATA TEXT (used by app/blog/page.tsx and app/blog/pagina/[page]/page.tsx)
 // ---------------------------------------------------------------------------
-export const BLOG_TITLE = 'Blog: uitleg en tips over IPTV';
+export const BLOG_TITLE = 'IPTV Blog: Uitleg, Tips, Gidsen & Meer | IPTVAbonnement';
 export const BLOG_DESCRIPTION =
   'Handleidingen en tips over IPTV: wat IPTV is, installeren op Smart TV en Fire TV Stick, de beste apps en haperend beeld oplossen.';
 

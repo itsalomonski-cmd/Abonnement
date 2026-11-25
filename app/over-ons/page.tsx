@@ -27,8 +27,8 @@ const PAGE_URL = `${SITE_URL}/over-ons`;
 // METADATA
 // ---------------------------------------------------------------------------
 export const metadata = generateSEOMetadata(
-  'Over ons',
-  `Over ${BRAND}: wie we zijn, hoe we werken en wat je van ons IPTV abonnement kunt verwachten. Eerst gratis testen, duidelijke prijzen en hulp via WhatsApp.`,
+  'Over ons - IPTV Abonnement',
+  `Lees wie er achter IPTVAbonnement zit en hoe we werken: eerst gratis testen, heldere prijzen en snelle hulp via WhatsApp.`,
   '/over-ons'
 );
 

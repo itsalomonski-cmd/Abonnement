@@ -299,7 +299,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return generateSEOMetadata('Zendercategorie niet gevonden');
   }
 
-  const title = `${category.name} | ${BRAND} 4K Streaming 2026`;
+  const title = `${category.name} | ${BRAND} 4K Streaming Live`;
   const description = `Bekijk ${category.name} op ${BRAND} — ${category.totalChannels.toLocaleString('nl-NL')}+ live zenders waaronder ${category.channels.slice(0, 3).map((c) => c.name).join(', ')}.`;
 
   return {
@@ -307,17 +307,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: { default: title, absolute: title },
     description,
     keywords: category.keywords.join(', '),
+    // Canonical/alternates/og:url point at the real route (/zenders/<slug>);
+    // the previous /channels/<slug> URLs do not exist (404).
     alternates: {
-      canonical: `${SITE_URL}/channels/${category.slug}`,
+      canonical: `${SITE_URL}/zenders/${category.slug}`,
       languages: {
-        'nl-NL': `${SITE_URL}/channels/${category.slug}`,
-        'x-default': `${SITE_URL}/channels/${category.slug}`,
+        'nl-NL': `${SITE_URL}/zenders/${category.slug}`,
+        'x-default': `${SITE_URL}/zenders/${category.slug}`,
       },
     },
     openGraph: {
       title,
       description,
-      url: `${SITE_URL}/channels/${category.slug}`,
+      url: `${SITE_URL}/zenders/${category.slug}`,
       type: 'website',
       locale: 'nl_NL',
       siteName: BRAND,
@@ -334,15 +336,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       images: [CONSTANTS.OG_IMAGE.url],
     },
+    // All /zenders/* pages are noindex (owner decision) and are left out of
+    // sitemap.xml (app/sitemap.ts). `follow` stays on so links are crawled.
     robots: {
-      index: true,
+      index: false,
       follow: true,
       googleBot: {
-        index: true,
+        index: false,
         follow: true,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
       },
     },
   };
@@ -398,22 +399,8 @@ export default async function ChannelCategoryPage({ params }: Props) {
           description: ch.description,
         })),
       },
-      {
-        '@type': 'Product',
-        name: `${BRAND} — ${category.name}`,
-        image: `${SITE_URL}/img/background.webp`,
-        description: category.description,
-        brand: { '@type': 'Brand', name: BRAND },
-        offers: {
-          '@type': 'AggregateOffer',
-          priceCurrency: 'EUR',
-          lowPrice: '30.00',
-          highPrice: '130.00',
-          offerCount: '9',
-          availability: 'https://schema.org/InStock',
-          url: `${SITE_URL}/prijzen`,
-        },
-      },
+      // No Product/Offer here: this page shows no prices, and Product markup
+      // must match visible content. Plan products live on /prijzen only.
       {
         '@type': 'FAQPage',
         '@id': `${SITE_URL}/channels/${category.slug}/#faq`,

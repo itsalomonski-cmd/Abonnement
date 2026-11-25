@@ -3,8 +3,8 @@ import type { Metadata } from 'next';
 import { generateSEOMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = generateSEOMetadata(
-  'Veelgestelde vragen over IPTV',
-  'Antwoorden op veelgestelde vragen over je IPTV abonnement: installatie, apparaten, internetsnelheid, de gratis proefperiode en betalen.',
+  'IPTV Abonnement FAQ: Antwoorden & Info | IPTVAbonnement',
+  'Antwoorden over je IPTV abonnement: installatie, apparaten, snelheid, betalen en 24u gratis testen.',
   '/veelgestelde-vragen'
 );
 

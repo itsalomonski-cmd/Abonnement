@@ -39,8 +39,8 @@ const RECOMMEND_PERCENT = String(REVIEW_STATS?.recommendPercent ?? 98);
 // METADATA
 // ---------------------------------------------------------------------------
 export const metadata = generateSEOMetadata(
-  `${BRAND} Reviews | Geverifieerde klantervaringen 2026`,
-  `Lees ${REVIEW_COUNT}+ geverifieerde ${BRAND} reviews van echte klanten. Beoordeeld met ${RATING_VALUE}/5 voor 4K-streaming, 55.000+ zenders en 24/7 support.`,
+  `IPTV Abonnement Reviews | Geverifieerde Klantervaringen`,
+  `Lees 1255+ geverifieerde IPTVAbonnement reviews (4,9/5) over 4K-streaming, 55.000+ zenders en onze 24/7 support.`,
   '/reviews'
 );
 
@@ -490,7 +490,7 @@ export default function ReviewsPage() {
               <span className="text-[#39FF14]">tevreden klanten?</span>
             </h3>
             <p className="text-[#94A3B8] text-sm sm:text-base font-medium max-w-xl mx-auto mb-8">
-              Kies uit 3-, 6- of 12-maandenplannen vanaf EUR €30. Begeleide WhatsApp-installatie, 55.000+ zenders en 150.000+ films en series.
+              Kies uit 3-, 6- of 12-maandenplannen vanaf EUR €30. Begeleide WhatsApp-installatie, 27.000+ zenders en 150.000+ films en series.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link

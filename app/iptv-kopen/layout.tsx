@@ -6,9 +6,9 @@ import { faqPlainText } from '@/lib/faq-text';
 
 const PATH = '/iptv-kopen';
 const PAGE_URL = absoluteUrl(PATH);
-const TITLE = 'IPTV kopen in Nederland: zo werkt het';
+const TITLE = 'IPTV Kopen in Nederland: Zo Werkt Het | IPTVAbonnement';
 const DESCRIPTION =
-  'IPTV kopen in Nederland? Zo koop je een IPTV abonnement: eerst 24 uur gratis testen, dan looptijd en apparaten kiezen, betalen en installeren.';
+  'IPTV kopen in Nederland? Eerst 24 uur gratis testen, kies je pakket, betaal en start direct op je Smart TV of Fire Stick.';
 
 // Target intent: buying process — "IPTV kopen", "IPTV kopen Nederland",
 // "IPTV abonnement kopen". Price comparison lives on /prijzen.

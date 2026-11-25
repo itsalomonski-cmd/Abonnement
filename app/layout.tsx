@@ -49,9 +49,9 @@ const OG_IMAGE = {
 // ---------------------------------------------------------------------------
 // SEO STRINGS (homepage defaults; every other page sets its own metadata)
 // ---------------------------------------------------------------------------
-const SEO_TITLE = `IPTV abonnement voor Nederland | ${CONSTANTS.BRAND_NAME}`;
+const SEO_TITLE = `IPTV Abonnement Kopen | Live TV, Films & 24u Gratis Test`;
 const SEO_DESCRIPTION =
-  `Een IPTV abonnement voor live tv, films en series op je Smart TV, Fire TV Stick, telefoon of tablet. Vanaf ${formatEUR(LOWEST_PRICE)} voor 3 maanden, eerst 24 uur gratis testen.`;
+  `Probeer jouw IPTV abonnement eerst 24 uur gratis! Kijk 4K live tv, films en series op elk apparaat. Vanaf € 31 voor 3 maanden.`;
 
 // ---------------------------------------------------------------------------
 // VIEWPORT
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: SEO_TITLE,
-    template: `%s | ${CONSTANTS.BRAND_NAME}`,
+    template: `%s`,
   },
   description: SEO_DESCRIPTION,
   authors: [{ name: CONSTANTS.BRAND_NAME }],
@@ -187,7 +187,7 @@ const OrganizationSchema = () => (
           height: OG_IMAGE.height,
           caption: OG_IMAGE.alt,
         },
-        description: `${CONSTANTS.BRAND_NAME} biedt IPTV abonnementen voor Nederland, met installatiehulp en klantenservice via WhatsApp.`,
+        description: `${CONSTANTS.BRAND_NAME} biedt digitale IPTV abonnementen voor Nederland. Na betaling ontvang je je inloggegevens via WhatsApp, waar je ook hulp krijgt bij de installatie.`,
         areaServed: { '@type': 'Country', name: 'Nederland' },
         // contactPoint omitted: no verified email address or phone number has
         // been provided yet (see CONSTANTS.CONTACT in lib/seo.ts).

@@ -1,19 +1,17 @@
 // app/prijzen/layout.tsx
 import type { Metadata } from 'next';
-import { CONSTANTS, absoluteUrl, breadcrumbSchema, generateSEOMetadata } from '@/lib/seo';
+import { absoluteUrl, breadcrumbSchema, generateSEOMetadata } from '@/lib/seo';
 import { pricingFaqs } from '@/lib/page-faqs';
-import { LOWEST_PRICE, formatEUR } from '@/lib/pricing';
-import { planOffers } from '../components/PageSchemas';
+import { planProducts } from '../components/PageSchemas';
 import { faqPlainText } from '@/lib/faq-text';
 
-const BRAND = CONSTANTS.BRAND_NAME;
 const PATH = '/prijzen';
 const PAGE_URL = absoluteUrl(PATH);
 
 // Target intent: price comparison / "goedkoop IPTV abonnement".
 export const metadata: Metadata = generateSEOMetadata(
-  `IPTV abonnement prijzen – vanaf ${formatEUR(LOWEST_PRICE)}`,
-  `Wat kost een IPTV abonnement? Alle prijzen voor 3, 6 of 12 maanden op 1, 2 of 3 apparaten, vanaf ${formatEUR(LOWEST_PRICE)}. Hoe langer de looptijd, hoe goedkoper per maand.`,
+  `IPTV Abonnement Prijzen: Vanaf € 31 + 24u Gratis Test`,
+  `Wat kost een IPTV abonnement? Bekijk pakketten voor 3, 6 of 12 maanden (1–3 apparaten) vanaf € 31. Eerst 24 uur gratis testen!`,
   PATH
 );
 
@@ -21,17 +19,8 @@ const PricingPageSchema = () => {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
-      {
-        '@type': 'Product',
-        '@id': `${PAGE_URL}#product`,
-        name: `${BRAND} IPTV abonnement`,
-        url: PAGE_URL,
-        image: absoluteUrl(CONSTANTS.OG_IMAGE.url),
-        description: `IPTV abonnementen van ${BRAND} voor 3, 6 of 12 maanden op 1, 2 of 3 apparaten, vanaf ${formatEUR(LOWEST_PRICE)}.`,
-        brand: { '@type': 'Brand', '@id': `${CONSTANTS.SITE_URL}/#brand`, name: BRAND },
-        category: 'Streamingdienst',
-        offers: planOffers(),
-      },
+      // One Product + one Offer per plan (see planProducts in PageSchemas.tsx).
+      ...planProducts(),
       {
         '@type': 'FAQPage',
         '@id': `${PAGE_URL}#faq`,

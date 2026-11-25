@@ -10,8 +10,8 @@ const PATH = '/reseller';
 const PAGE_URL = absoluteUrl(PATH);
 
 export const metadata: Metadata = generateSEOMetadata(
-  `IPTV reseller worden – pakketten vanaf ${formatEUR(RESELLER_PRICES.starter.price)}`,
-  `Word IPTV reseller bij ${BRAND}: koop 10, 20 of 30 credits, activeer abonnementen voor je eigen klanten en bepaal zelf je verkoopprijs.`,
+  `IPTV Reseller Worden: Vanaf € 269 | IPTVAbonnement`,
+  `Word IPTV reseller bij IPTVAbonnement: 10, 20 of 30 credits, eigen prijzen bepalen en direct klanten activeren.`,
   PATH
 );
 
@@ -30,12 +30,16 @@ const ResellerSchema = () => {
         '@id': `${PAGE_URL}#service`,
         name: `${BRAND} resellerprogramma`,
         serviceType: 'IPTV-resellerprogramma',
+        // Digital service: credits are used in the online reseller panel to
+        // activate subscriptions; nothing is shipped. Wording as on /reseller.
+        description: `Resellerprogramma van ${BRAND}: koop resellercredits en activeer via het resellerpanel direct digitale IPTV abonnementen voor je eigen klanten. Er wordt niets fysiek verzonden.`,
         provider: { '@id': `${CONSTANTS.SITE_URL}/#organization` },
         areaServed: { '@type': 'Country', name: 'Nederland' },
         url: PAGE_URL,
         offers: packages.map((p) => ({
           '@type': 'Offer',
           name: `${p.name} – ${p.credits} credits`,
+          description: `${p.credits} resellercredits (${p.credits} jaar), digitaal te gebruiken in het resellerpanel.`,
           price: schemaPrice(p.price),
           priceCurrency: CONSTANTS.CURRENCY,
           url: `${PAGE_URL}#pakketten`,
