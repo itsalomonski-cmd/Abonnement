@@ -1,7 +1,8 @@
 // Server Component: the footer has no interactivity (hover effects are CSS),
 // so it renders on the server. This keeps lib/channels-data.ts (used here only
 // for category slugs/names) out of the client JavaScript bundle.
-import Link from "next/link";
+// Footer links prefetch on hover/touch/focus instead of on sight (see IntentLink).
+import IntentLink from "./IntentLink";
 import { useId } from "react";
 import { CONSTANTS } from "@/lib/seo";
 import BrandLogo from "./BrandLogo";
@@ -82,7 +83,7 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="sm:col-span-2 lg:col-span-5 flex flex-col justify-between">
             <div>
-              <Link
+              <IntentLink
                 href="/"
                 className="flex items-center gap-3 mb-5 group inline-flex cursor-pointer"
                 aria-label={`${CONSTANTS.BRAND_NAME} – naar de homepage`}
@@ -90,7 +91,7 @@ export default function Footer() {
                 <div className="w-auto h-12 flex items-center group-hover:scale-105 transition-transform duration-200">
                   <BrandLogo className="h-full w-[221px]" title="" />
                 </div>
-              </Link>
+              </IntentLink>
 
               <p className="text-sm md:text-base font-bold text-[#94A3B8] max-w-sm leading-relaxed mb-5">
                 <strong className="text-[#39FF14]">{CONSTANTS.BRAND_NAME}</strong> helpt je aan een{" "}
@@ -142,12 +143,12 @@ export default function Footer() {
             <ul className="space-y-3 text-sm font-bold">
               {navigationLinks.map((link) => (
                 <li key={link.name}>
-                  <Link
+                  <IntentLink
                     href={link.href}
                     className="text-[#94A3B8] hover:text-[#39FF14] transition-colors cursor-pointer"
                   >
                     {link.name}
-                  </Link>
+                  </IntentLink>
                 </li>
               ))}
             </ul>
@@ -161,12 +162,12 @@ export default function Footer() {
             <ul className="space-y-3 text-sm font-bold">
               {channelsData.map((category) => (
                 <li key={category.slug}>
-                  <Link
+                  <IntentLink
                     href={`/zenders/${category.slug}`}
                     className="text-[#94A3B8] hover:text-[#39FF14] transition-colors block cursor-pointer"
                   >
                     {category.name}
-                  </Link>
+                  </IntentLink>
                 </li>
               ))}
             </ul>
@@ -180,12 +181,12 @@ export default function Footer() {
             <ul className="space-y-3 text-sm font-bold">
               {legalLinks.map((link) => (
                 <li key={link.name}>
-                  <Link
+                  <IntentLink
                     href={link.href}
                     className="text-[#94A3B8] hover:text-[#39FF14] transition-colors cursor-pointer"
                   >
                     {link.name}
-                  </Link>
+                  </IntentLink>
                 </li>
               ))}
             </ul>

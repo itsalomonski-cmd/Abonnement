@@ -27,6 +27,8 @@ import {
   Star,
 } from 'lucide-react';
 import ShareButtons from '../../components/ShareButtons';
+// Category grid prefetches on hover/touch/focus instead of on sight.
+import IntentLink from '../../components/IntentLink';
 
 const SITE_URL = CONSTANTS.SITE_URL;
 const BRAND = CONSTANTS.BRAND_NAME;
@@ -669,7 +671,7 @@ export default async function ChannelCategoryPage({ params }: Props) {
               {channelsData
                 .filter((c) => c.slug !== category.slug)
                 .map((cat) => (
-                  <Link
+                  <IntentLink
                     key={cat.slug}
                     href={`/zenders/${cat.slug}`}
                     className="p-4 bg-[#18181B] border border-[#27272A] rounded-xl hover:border-[#39FF14] hover:bg-[#27272A]/50 transition-all text-center group cursor-pointer"
@@ -680,7 +682,7 @@ export default async function ChannelCategoryPage({ params }: Props) {
                     <span className="text-[10px] text-[#94A3B8] font-bold mt-1 block">
                       {cat.totalChannels.toLocaleString('nl-NL')}+ zenders
                     </span>
-                  </Link>
+                  </IntentLink>
                 ))}
             </div>
           </div>

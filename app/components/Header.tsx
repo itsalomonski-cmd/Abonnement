@@ -1,6 +1,9 @@
 'use client';
 
 import Link from 'next/link';
+// Nav links prefetch on hover/touch/focus (IntentLink); the "Bestellen" CTA to
+// /prijzen keeps normal prefetching because it is the main conversion path.
+import IntentLink from './IntentLink';
 import { Menu, X } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
@@ -113,11 +116,11 @@ export default function Header() {
 
             {/* Brand Logo */}
             <div className="flex items-center">
-              <Link href="/" className="flex items-center group cursor-pointer" aria-label={`${CONSTANTS.BRAND_NAME} – naar de homepage`}>
+              <IntentLink href="/" className="flex items-center group cursor-pointer" aria-label={`${CONSTANTS.BRAND_NAME} – naar de homepage`}>
                 <div className="h-10 flex items-center group-hover:scale-105 transition-transform duration-200">
                   <BrandLogo className="h-full w-[220px]" title="" />
                 </div>
-              </Link>
+              </IntentLink>
             </div>
 
             {/* Desktop Navigation Pill */}
@@ -127,7 +130,7 @@ export default function Header() {
                   const active = isActive(link.href);
                   return (
                     <li key={link.name}>
-                      <Link
+                      <IntentLink
                         href={link.href}
                         aria-current={active ? 'page' : undefined}
                         className={`font-black uppercase tracking-wider text-xs xl:text-sm transition-all duration-200 px-4 py-2 rounded-full inline-block cursor-pointer ${
@@ -137,7 +140,7 @@ export default function Header() {
                         }`}
                       >
                         {link.name}
-                      </Link>
+                      </IntentLink>
                     </li>
                   );
                 })}
@@ -195,7 +198,7 @@ export default function Header() {
 
         <div className="relative z-10 w-full max-w-sm px-6 flex flex-col items-center gap-3">
           {navLinks.map((link) => (
-            <Link
+            <IntentLink
               key={link.name}
               href={link.href}
               aria-current={isActive(link.href) ? 'page' : undefined}
@@ -207,7 +210,7 @@ export default function Header() {
               }`}
             >
               {link.name}
-            </Link>
+            </IntentLink>
           ))}
 
           <div className="w-full pt-4">
