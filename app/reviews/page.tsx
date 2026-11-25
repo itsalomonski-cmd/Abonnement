@@ -32,7 +32,7 @@ const WHATSAPP_BASE = CONSTANTS.CONTACT.whatsappUrl || 'https://support-tv.onlin
 
 const RATING_VALUE = String(REVIEW_STATS?.averageRating ?? 4.9).replace('.', ',');
 const REVIEW_COUNT = String(REVIEW_STATS?.totalReviews ?? 1255);
-const HAPPY_CUSTOMERS = String(REVIEW_STATS?.happyCustomers ?? '50.000+');
+const HAPPY_CUSTOMERS = String(REVIEW_STATS?.happyCustomers ?? '25.000+');
 const RECOMMEND_PERCENT = String(REVIEW_STATS?.recommendPercent ?? 98);
 
 // ---------------------------------------------------------------------------
@@ -40,7 +40,7 @@ const RECOMMEND_PERCENT = String(REVIEW_STATS?.recommendPercent ?? 98);
 // ---------------------------------------------------------------------------
 export const metadata = generateSEOMetadata(
   `IPTV Abonnement Reviews | Geverifieerde Klantervaringen`,
-  `Lees 1255+ geverifieerde IPTVAbonnement reviews (4,9/5) over 4K-streaming, 55.000+ zenders en onze 24/7 support.`,
+  `Lees 1255+ geverifieerde IPTVAbonnement reviews (4,9/5) over 4K-streaming, 29.000+ zenders en onze 24/7 support.`,
   '/reviews'
 );
 
@@ -491,7 +491,7 @@ export default function ReviewsPage() {
               <span className="text-[#39FF14]">tevreden klanten?</span>
             </h3>
             <p className="text-[#94A3B8] text-sm sm:text-base font-medium max-w-xl mx-auto mb-8">
-              Kies uit 3-, 6- of 12-maandenplannen vanaf EUR €30. Begeleide WhatsApp-installatie, 27.000+ zenders en 150.000+ films en series.
+              Kies uit 3-, 6- of 12-maandenplannen vanaf EUR €31. Begeleide WhatsApp-installatie, 29.000+ zenders en 120.000+ films en series.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link

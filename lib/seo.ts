@@ -21,12 +21,15 @@ const CURRENCY = 'EUR';
 const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 
 // Social-share and brand images that exist in /public, with their real pixel
-// dimensions.
+// dimensions. og-image.jpg was replaced (commit 910b87b) with a 1200x620 file;
+// width/height and alt must describe the file actually served. Update all
+// three whenever the image is replaced again.
 const OG_IMAGE = {
   url: `/img/og-image.jpg`,
   width: 1200,
-  height: 630,
+  height: 620,
   type: 'image/jpeg',
+  alt: `${BRAND_NAME}-logo met een tv, laptop, tablet, telefoon, mediabox en afstandsbediening`,
 } as const;
 
 const LOGO_IMAGE = {
@@ -182,7 +185,7 @@ export const generateSEOMetadata = (
       siteName: BRAND_NAME,
       locale: LOCALE,
       type: 'website',
-      images: [{ ...OG_IMAGE, alt: `${BRAND_NAME} logo met de tekst “Jouw IPTV abonnement in Nederland”` }],
+      images: [OG_IMAGE],
     },
     twitter: {
       card: 'summary_large_image',

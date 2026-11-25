@@ -39,12 +39,10 @@ const montserrat = Montserrat({
 const SITE_URL = `https://${CONSTANTS.DOMAIN}`;
 
 // ---------------------------------------------------------------------------
-// OG IMAGE — 1200x630 share image defined in CONSTANTS.OG_IMAGE (lib/seo.ts).
+// OG IMAGE — share image (url, real dimensions, alt) defined once in
+// CONSTANTS.OG_IMAGE (lib/seo.ts).
 // ---------------------------------------------------------------------------
-const OG_IMAGE = {
-  ...CONSTANTS.OG_IMAGE,
-  alt: `${CONSTANTS.BRAND_NAME} logo met de tekst “Jouw IPTV abonnement in Nederland”`,
-};
+const OG_IMAGE = CONSTANTS.OG_IMAGE;
 
 // ---------------------------------------------------------------------------
 // SEO STRINGS (homepage defaults; every other page sets its own metadata)
@@ -227,7 +225,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="nl" suppressHydrationWarning className="scroll-smooth">
+    <html lang="nl-NL" suppressHydrationWarning className="scroll-smooth">
       {/* No Google Fonts preconnects: next/font self-hosts Poppins/Montserrat
           from this domain, so the page never contacts Google's font servers. */}
       <body

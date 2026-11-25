@@ -87,6 +87,25 @@ const nextConfig: NextConfig = {
       { source: '/index', destination: '/', permanent: true },
       // Archive page 1 is /blog itself; never serve it under a second URL.
       { source: '/blog/pagina/1', destination: '/blog', permanent: true },
+      // Old channel-category URLs (301), only where the destination is the
+      // same subject. Evidence (git history):
+      // - First deploy (12514cd, 24 Nov 07:30) had /zenders/sport ("Sport"),
+      //   /zenders/films-series ("Films & series", on demand) and
+      //   /zenders/kinderen-familie ("Kinderen & familie"); v1.2 (70f3deb)
+      //   renamed them to sports, movies-vod and kids-family.
+      // - /zenders/internationaal ("Internationale zenders", all countries) has
+      //   NO single equivalent (now split per region), so it is NOT redirected.
+      { source: '/zenders/sport', destination: '/zenders/sports', statusCode: 301 },
+      { source: '/zenders/films-series', destination: '/zenders/movies-vod', statusCode: 301 },
+      { source: '/zenders/kinderen-familie', destination: '/zenders/kids-family', statusCode: 301 },
+      // v1.2-v1.4 (24 Nov 11:33 - 25 Nov 07:39) published canonical tags
+      // pointing to /channels/<slug>, a route that never existed. Each of
+      // these 8 URLs named exactly the /zenders/<slug> page.
+      {
+        source: '/channels/:slug(sports|usa|europe|canadian|australian|asia-middle-east|movies-vod|kids-family)',
+        destination: '/zenders/:slug',
+        statusCode: 301,
+      },
     ];
   },
   // Indexing protection for NON-production deployments only. A build is

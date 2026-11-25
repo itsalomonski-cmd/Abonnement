@@ -323,12 +323,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: 'website',
       locale: 'nl_NL',
       siteName: BRAND,
-      images: [
-        {
-          ...CONSTANTS.OG_IMAGE,
-          alt: `${category.name} - ${BRAND} Zenders`,
-        },
-      ],
+      // Same site-wide share image on every category, so its accurate shared
+      // alt is used (not a category-specific description it does not show).
+      images: [CONSTANTS.OG_IMAGE],
     },
     twitter: {
       card: 'summary_large_image',

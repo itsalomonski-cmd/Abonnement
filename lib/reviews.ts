@@ -21,7 +21,7 @@ export const REVIEW_STATS = {
   averageRating: 4.9,
   totalReviews: 1255,
   recommendPercent: 98,
-  happyCustomers: '50.000+',
+  happyCustomers: '25.000+',
   countries: [
     { code: 'NL' as const, name: 'Nederland', flag: 'nl', label: 'NL' },
   ],
@@ -299,11 +299,11 @@ export const reviews: Review[] = [
 export const REVIEW_FAQS = [
   {
     q: 'Is deze IPTV-dienst legitiem en betrouwbaar?',
-    a: 'Ja. We bedienen meer dan 50.000 actieve klanten met een gemiddelde beoordeling van 4,9 van de 5. We bieden een gratis proefperiode van 24 uur, 24/7 WhatsApp-support en veilige betalingen via Creditcard, PayPal, Crypto en Apple/Google Pay.',
+    a: 'Ja. We bedienen meer dan 25.000 actieve klanten met een gemiddelde beoordeling van 4,9 van de 5. We bieden een gratis proefperiode van 24 uur, 24/7 WhatsApp-support en veilige betalingen via Creditcard, PayPal, Crypto en Apple/Google Pay.',
   },
   {
     q: 'Hoeveel klanten heeft deze IPTV-dienst?',
-    a: 'We bedienen meer dan 50.000 actieve abonnees, met onze grootste gemeenschappen verspreid over heel Nederland.',
+    a: 'We bedienen meer dan 25.000 actieve abonnees, met onze grootste gemeenschappen verspreid over heel Nederland.',
   },
   {
     q: 'Wat zeggen klanten over deze dienst?',

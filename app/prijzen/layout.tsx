@@ -2,7 +2,7 @@
 import type { Metadata } from 'next';
 import { absoluteUrl, breadcrumbSchema, generateSEOMetadata, webPageNode } from '@/lib/seo';
 import { pricingFaqs } from '@/lib/page-faqs';
-import { planProducts } from '../components/PageSchemas';
+import { subscriptionService } from '../components/PageSchemas';
 import { faqPlainText } from '@/lib/faq-text';
 
 const PATH = '/prijzen';
@@ -19,8 +19,9 @@ const PricingPageSchema = () => {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
-      // One Product + one Offer per plan (see planProducts in PageSchemas.tsx).
-      ...planProducts(),
+      // The subscription as an online Service; the 9 plans are Offers in its
+      // OfferCatalog (see subscriptionService in PageSchemas.tsx).
+      subscriptionService(),
       {
         '@type': 'FAQPage',
         '@id': `${PAGE_URL}#faq`,
