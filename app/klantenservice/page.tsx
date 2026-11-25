@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { FadeIn, FadeInStagger, FadeInItem } from '../components/AnimatedSection';
-import { CONSTANTS, WHATSAPP_AVAILABLE, whatsappUrl, WHATSAPP_LINK_TARGET } from '@/lib/seo';
+import { CONSTANTS, WHATSAPP_AVAILABLE, whatsappUrl, WHATSAPP_LINK_TARGET, SITE_PRIMARY_IMAGE_REF } from '@/lib/seo';
 import { handOffToWhatsApp } from '@/lib/whatsapp-handoff';
 import {
   Mail,
@@ -249,6 +249,7 @@ export default function SupportPage() {
         description: `Neem contact op met ${BRAND} via WhatsApp voor vragen over je IPTV abonnement, installatie en betalen.`,
         inLanguage: CONSTANTS.LANGUAGE,
         isPartOf: { '@id': `${SITE_URL}/#website` },
+        primaryImageOfPage: SITE_PRIMARY_IMAGE_REF,
       },
       {
         '@type': 'BreadcrumbList',

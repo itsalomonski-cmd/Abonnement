@@ -1,6 +1,6 @@
 // app/installatie/layout.tsx
 import type { Metadata } from 'next';
-import { CONSTANTS, absoluteUrl, breadcrumbSchema, generateSEOMetadata } from '@/lib/seo';
+import { CONSTANTS, absoluteUrl, breadcrumbSchema, generateSEOMetadata, webPageNode } from '@/lib/seo';
 import { setupFaqs } from '@/lib/page-faqs';
 import { faqPlainText } from '@/lib/faq-text';
 
@@ -42,6 +42,7 @@ const SetupSchema = () => {
         })),
       },
       { ...breadcrumbSchema([{ name: 'Installatie', path: PATH }]), '@id': `${PAGE_URL}#breadcrumb` },
+      webPageNode(PAGE_URL),
     ],
   };
 

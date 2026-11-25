@@ -1,4 +1,4 @@
-import { CONSTANTS, breadcrumbSchema, generateSEOMetadata } from '@/lib/seo';
+import { CONSTANTS, breadcrumbSchema, generateSEOMetadata, SITE_PRIMARY_IMAGE_REF } from '@/lib/seo';
 import { LOWEST_PRICE, formatEUR } from '@/lib/pricing';
 import Link from 'next/link';
 import {
@@ -48,6 +48,7 @@ const AboutPageSchema = () => {
         inLanguage: CONSTANTS.LANGUAGE,
         isPartOf: { '@id': `${SITE_URL}/#website` },
         about: { '@id': `${SITE_URL}/#organization` },
+        primaryImageOfPage: SITE_PRIMARY_IMAGE_REF,
       },
       { ...breadcrumbSchema([{ name: 'Over ons', path: '/over-ons' }]), '@id': `${PAGE_URL}#breadcrumb` },
     ],

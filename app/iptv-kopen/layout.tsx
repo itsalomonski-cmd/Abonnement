@@ -1,6 +1,6 @@
 // app/iptv-kopen/layout.tsx
 import type { Metadata } from 'next';
-import { CONSTANTS, absoluteUrl, breadcrumbSchema, generateSEOMetadata } from '@/lib/seo';
+import { CONSTANTS, absoluteUrl, breadcrumbSchema, generateSEOMetadata, SITE_PRIMARY_IMAGE_REF } from '@/lib/seo';
 import { buyFaqs } from '@/lib/page-faqs';
 import { faqPlainText } from '@/lib/faq-text';
 
@@ -27,6 +27,7 @@ const BuyPageSchema = () => {
         inLanguage: CONSTANTS.LANGUAGE,
         isPartOf: { '@id': `${CONSTANTS.SITE_URL}/#website` },
         breadcrumb: { '@id': `${PAGE_URL}#breadcrumb` },
+        primaryImageOfPage: SITE_PRIMARY_IMAGE_REF,
       },
       { ...breadcrumbSchema([{ name: 'IPTV kopen', path: PATH }]), '@id': `${PAGE_URL}#breadcrumb` },
       {

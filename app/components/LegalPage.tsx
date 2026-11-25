@@ -9,7 +9,7 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { CheckCircle, FileText, AlertCircle, MessageSquare, type LucideIcon } from 'lucide-react';
-import { CONSTANTS, absoluteUrl, breadcrumbSchema } from '@/lib/seo';
+import { CONSTANTS, absoluteUrl, breadcrumbSchema, SITE_PRIMARY_IMAGE_REF } from '@/lib/seo';
 
 /** Date on which the Dutch versions of the legal texts were drafted. */
 export const LEGAL_LAST_UPDATED = '23 november 2026';
@@ -87,6 +87,7 @@ export default function LegalPage({
         inLanguage: CONSTANTS.LANGUAGE,
         isPartOf: { '@id': `${CONSTANTS.SITE_URL}/#website` },
         about: { '@id': `${CONSTANTS.SITE_URL}/#organization` },
+        primaryImageOfPage: SITE_PRIMARY_IMAGE_REF,
       },
       { ...breadcrumbSchema([{ name: breadcrumbName, path }]), '@id': `${pageUrl}#breadcrumb` },
     ],

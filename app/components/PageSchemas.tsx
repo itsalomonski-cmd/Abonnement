@@ -1,6 +1,6 @@
 // components/PageSchemas.tsx
 import React from 'react';
-import { CONSTANTS } from '@/lib/seo';
+import { CONSTANTS, webPageNode } from '@/lib/seo';
 import { homeFaqs } from '@/lib/home-faqs';
 import { PRICES, DEVICE_OPTIONS, PLAN_MONTHS, schemaPrice, deviceLabel, monthsLabel } from '@/lib/pricing';
 import { faqPlainText } from '@/lib/faq-text';
@@ -67,6 +67,29 @@ export const planProducts = () => {
     }))
   );
 };
+
+// ---------------------------------------------------------------------------
+// HOMEPAGE WEBPAGE SCHEMA
+// Links the homepage to the WebSite/Organization and to its primary image
+// (the site-wide share image, which is also the homepage og:image). No
+// breadcrumb: the homepage is the breadcrumb root.
+// ---------------------------------------------------------------------------
+export function HomeWebPageSchema() {
+  const schema = {
+    '@context': 'https://schema.org',
+    ...webPageNode(SITE_URL, { breadcrumb: false }),
+    about: { '@id': `${SITE_URL}/#organization` },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      id="home-webpage-schema"
+      suppressHydrationWarning
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
 
 // ---------------------------------------------------------------------------
 // FAQ SCHEMA

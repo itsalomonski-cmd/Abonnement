@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { FAQSchema } from './components/PageSchemas';
+import { FAQSchema, HomeWebPageSchema } from './components/PageSchemas';
 import { CONSTANTS, FREE_TRIAL_WHATSAPP_URL, WHATSAPP_LINK_TARGET } from '@/lib/seo';
 import { LOWEST_PRICE, formatEUR, savingPercent } from '@/lib/pricing';
 import { blogPosts } from '@/lib/blog';
@@ -110,6 +110,7 @@ const FAQ = dynamic(() => import('./components/FAQ'), {
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-[#081425] text-[#F8FAFC] overflow-hidden">
+      <HomeWebPageSchema />
       <FAQSchema />
 
       {/* =========================================================
@@ -590,7 +591,7 @@ export default function Home() {
 
             <FadeInItem className="flex flex-col items-center p-6 bg-[#18181B] text-[#F8FAFC] rounded-3xl border border-[#27272A] shadow-lg">
               <span className="text-5xl md:text-7xl font-black text-[#39FF14] mb-2">
-                <AnimatedCounter value={55} suffix="K+" />
+                <AnimatedCounter value={27} suffix="K+" />
               </span>
               <span className="text-xs text-[#94A3B8] font-extrabold uppercase tracking-widest mt-2">
                 Live zenders

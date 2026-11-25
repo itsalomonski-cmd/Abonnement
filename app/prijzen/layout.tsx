@@ -1,6 +1,6 @@
 // app/prijzen/layout.tsx
 import type { Metadata } from 'next';
-import { absoluteUrl, breadcrumbSchema, generateSEOMetadata } from '@/lib/seo';
+import { absoluteUrl, breadcrumbSchema, generateSEOMetadata, webPageNode } from '@/lib/seo';
 import { pricingFaqs } from '@/lib/page-faqs';
 import { planProducts } from '../components/PageSchemas';
 import { faqPlainText } from '@/lib/faq-text';
@@ -31,6 +31,7 @@ const PricingPageSchema = () => {
         })),
       },
       { ...breadcrumbSchema([{ name: 'Prijzen', path: PATH }]), '@id': `${PAGE_URL}#breadcrumb` },
+      webPageNode(PAGE_URL),
     ],
   };
 

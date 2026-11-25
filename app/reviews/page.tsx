@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useId } from 'react';
-import { CONSTANTS, generateSEOMetadata } from '@/lib/seo';
+import { CONSTANTS, generateSEOMetadata, SITE_PRIMARY_IMAGE_REF } from '@/lib/seo';
 import {
   reviews,
   REVIEW_STATS,
@@ -92,6 +92,7 @@ const ReviewsPageSchema = () => {
         isPartOf: { '@id': websiteId },
         about: { '@id': orgId },
         breadcrumb: { '@id': `${PAGE_URL}/#breadcrumb` },
+        primaryImageOfPage: SITE_PRIMARY_IMAGE_REF,
       },
       {
         '@type': 'BreadcrumbList',

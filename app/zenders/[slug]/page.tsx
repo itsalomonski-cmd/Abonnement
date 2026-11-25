@@ -4,7 +4,7 @@ import {
   getAllCategorySlugs,
   type CountryCode,
 } from '@/lib/channels-data';
-import { CONSTANTS, generateSEOMetadata } from '@/lib/seo';
+import { CONSTANTS, generateSEOMetadata, SITE_PRIMARY_IMAGE_REF } from '@/lib/seo';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Metadata } from 'next';
@@ -368,25 +368,30 @@ export default async function ChannelCategoryPage({ params }: Props) {
   const otherChannels = category.channels.filter((c) => !c.popular);
   const sortedChannels = [...popularChannels, ...otherChannels];
 
+  // The real route of this page; the old /channels/<slug> path does not exist.
+  const pageUrl = `${SITE_URL}/zenders/${category.slug}`;
+
   const jsonLdGraph = {
     '@context': 'https://schema.org',
     '@graph': [
       {
         '@type': 'BreadcrumbList',
-        '@id': `${SITE_URL}/channels/${category.slug}/#breadcrumb`,
+        '@id': `${pageUrl}/#breadcrumb`,
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
-          { '@type': 'ListItem', position: 2, name: category.name, item: `${SITE_URL}/channels/${category.slug}` },
+          { '@type': 'ListItem', position: 2, name: category.name, item: pageUrl },
         ],
       },
       {
         '@type': 'CollectionPage',
-        '@id': `${SITE_URL}/channels/${category.slug}/#collection`,
-        url: `${SITE_URL}/channels/${category.slug}`,
+        '@id': `${pageUrl}/#collection`,
+        url: pageUrl,
         name: `${category.name} | ${BRAND}`,
         description: category.description,
         inLanguage: 'nl-NL',
         isPartOf: { '@id': `${SITE_URL}/#website` },
+        breadcrumb: { '@id': `${pageUrl}/#breadcrumb` },
+        primaryImageOfPage: SITE_PRIMARY_IMAGE_REF,
       },
       {
         '@type': 'ItemList',
@@ -403,7 +408,7 @@ export default async function ChannelCategoryPage({ params }: Props) {
       // must match visible content. Plan products live on /prijzen only.
       {
         '@type': 'FAQPage',
-        '@id': `${SITE_URL}/channels/${category.slug}/#faq`,
+        '@id': `${pageUrl}/#faq`,
         mainEntity: category.faqs.map((faq) => ({
           '@type': 'Question',
           name: faq.question,
@@ -655,7 +660,7 @@ export default async function ChannelCategoryPage({ params }: Props) {
           <div className="w-full flex justify-center items-center my-10">
             <ShareButtons
               title={`${category.name} - ${BRAND}`}
-              url={`${SITE_URL}/channels/${category.slug}`}
+              url={pageUrl}
             />
           </div>
 

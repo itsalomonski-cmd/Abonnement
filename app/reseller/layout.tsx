@@ -1,6 +1,6 @@
 // app/reseller/layout.tsx
 import type { Metadata } from 'next';
-import { CONSTANTS, absoluteUrl, breadcrumbSchema, generateSEOMetadata } from '@/lib/seo';
+import { CONSTANTS, absoluteUrl, breadcrumbSchema, generateSEOMetadata, webPageNode } from '@/lib/seo';
 import { resellerFaqs } from '@/lib/page-faqs';
 import { RESELLER_PRICES, formatEUR, schemaPrice } from '@/lib/pricing';
 import { faqPlainText } from '@/lib/faq-text';
@@ -55,6 +55,7 @@ const ResellerSchema = () => {
         })),
       },
       { ...breadcrumbSchema([{ name: 'Resellerprogramma', path: PATH }]), '@id': `${PAGE_URL}#breadcrumb` },
+      webPageNode(PAGE_URL),
     ],
   };
 

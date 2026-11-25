@@ -223,3 +223,27 @@ export const breadcrumbSchema = (trail: { name: string; path: string }[]) => ({
     item: absoluteUrl(item.path),
   })),
 });
+
+/**
+ * `primaryImageOfPage` reference for pages whose og:image is the site-wide
+ * share image (CONSTANTS.OG_IMAGE). It points at the ImageObject
+ * `${SITE_URL}/#primaryimage` declared once in the Organization schema
+ * (app/layout.tsx), which is rendered on every page. Pages with their own
+ * image (blog articles) declare their own ImageObject instead.
+ */
+export const SITE_PRIMARY_IMAGE_REF = { '@id': `${SITE_URL}/#primaryimage` } as const;
+
+/**
+ * Minimal WebPage node for pages whose main schema entity is something else
+ * (Product, Service, HowTo, FAQ). No name/description on purpose: those stay
+ * defined only by the page's meta title and description.
+ */
+export const webPageNode = (pageUrl: string, { breadcrumb = true }: { breadcrumb?: boolean } = {}) => ({
+  '@type': 'WebPage',
+  '@id': `${pageUrl}#webpage`,
+  url: pageUrl,
+  inLanguage: LANGUAGE,
+  isPartOf: { '@id': `${SITE_URL}/#website` },
+  ...(breadcrumb ? { breadcrumb: { '@id': `${pageUrl}#breadcrumb` } } : {}),
+  primaryImageOfPage: SITE_PRIMARY_IMAGE_REF,
+});

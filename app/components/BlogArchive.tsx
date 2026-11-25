@@ -10,7 +10,7 @@
 import Link from 'next/link';
 import { blogPosts, type BlogPost } from '@/lib/blog';
 import { BLOG_CATEGORY_LABELS, blogImageProps, formatPostDate, getPostReadMinutes } from '@/lib/blog-helpers';
-import { CONSTANTS, absoluteUrl, whatsappUrl, WHATSAPP_LINK_TARGET } from '@/lib/seo';
+import { CONSTANTS, absoluteUrl, whatsappUrl, WHATSAPP_LINK_TARGET, SITE_PRIMARY_IMAGE_REF } from '@/lib/seo';
 import { LOWEST_PRICE, formatEUR } from '@/lib/pricing';
 import { POSTS_PER_PAGE, blogTotalPages } from '@/lib/blog-pagination';
 import {
@@ -139,6 +139,7 @@ const BlogSchema = ({ page, posts }: { page: number; posts: BlogPost[] }) => {
         inLanguage: CONSTANTS.LANGUAGE,
         isPartOf: { '@id': `${SITE_URL}/#website` },
         about: { '@id': `${SITE_URL}/#organization` },
+        primaryImageOfPage: SITE_PRIMARY_IMAGE_REF,
       },
       {
         '@type': 'BreadcrumbList',
