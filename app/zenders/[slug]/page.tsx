@@ -669,7 +669,7 @@ export default async function ChannelCategoryPage({ params }: Props) {
                 .map((cat) => (
                   <Link
                     key={cat.slug}
-                    href={`/channels/${cat.slug}`}
+                    href={`/zenders/${cat.slug}`}
                     className="p-4 bg-[#18181B] border border-[#27272A] rounded-xl hover:border-[#39FF14] hover:bg-[#27272A]/50 transition-all text-center group cursor-pointer"
                   >
                     <span className="text-xs sm:text-sm font-black uppercase text-[#F8FAFC] group-hover:text-[#39FF14] transition-colors block">

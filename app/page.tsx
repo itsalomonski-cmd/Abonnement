@@ -1000,7 +1000,7 @@ export default function Home() {
 
               <div className="w-full flex sm:inline-flex mt-8">
                 <Link
-                  href="/zenders/sport"
+                  href="/zenders/sports"
                   className="w-full sm:w-auto text-center whitespace-nowrap bg-[#0F2942] border-2 border-[#39FF14] px-8 py-4 text-xs font-black uppercase tracking-widest text-[#F8FAFC] hover:bg-[#0B1F35] transition-all hover:scale-105 rounded-full shrink-0 shadow-lg"
                 >
                   Lees meer over sport
